@@ -14,7 +14,10 @@
     <link rel="canonical" href="/welcome.html" />
       <title>Fan Xia</title>
     
-<style>:focus-visible{outline:2px solid #5984bd;outline-offset:5px}html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style><style>body{opacity:1!important}body,div,h1,h2,h3,p,a,span{font-family:Arial,Helvetica,sans-serif!important}</style></head>
+<style>:focus-visible{outline:2px solid #5984bd;outline-offset:5px}html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style><style>body{opacity:1!important}body,div,h1,h2,h3,p,a,span{font-family:Arial,Helvetica,sans-serif!important}</style><style id="mobile-video-compatibility">
+html body .video-wrap video.renditions-video {display:block!important;visibility:visible!important;opacity:1!important}
+html body .video-wrap img.mp4-image {display:none!important}
+</style></head>
   <body class="transition-enabled">    <section class="splash centered e2e-site-content">
       <div class="outer-wrap">
         <div class="centered-content-wrap js-site-wrap splash-modules">
@@ -23,7 +26,7 @@
     <img
       class='mp4-image'
     />
-    <video class='renditions-video' autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" data-responsive-video>
+    <video class='renditions-video' autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" preload="auto" webkit-playsinline>
           
           
           
@@ -76,7 +79,7 @@ padding-bottom: px;
         </div>
       </div>
     </section>
-<script>document.querySelectorAll(".js-hamburger").forEach(el=>el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}}));</script><script src="/assets/portfolio-video.js" defer></script></body>
+<script>document.querySelectorAll(".js-hamburger").forEach(el=>el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.click()}}));</script><script src="/assets/portfolio-video.js?v=20261014-2" defer></script></body>
 <script type="text/javascript">
   // fix for Safari's back/forward cache
   window.onpageshow = function(e) {
