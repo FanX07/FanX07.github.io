@@ -309,3 +309,9 @@ html.lightbox-zoomed #lightbox-img-wrap .lightbox-extra {
   animation-duration: 0.25s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards; }
+
+
+/* Keep inline background videos visible on iOS, including touch Safari. */
+.video-wrap .renditions-video { display: block !important; }
+.video-wrap .mp4-image { display: none !important; }
+.portfolio-video-play { position: fixed; right: 20px; bottom: 20px; z-index: 10000; padding: 12px 20px; border: 1px solid rgba(255,255,255,.6); border-radius: 999px; background: rgba(20,24,32,.85); color: white; font: 14px Arial,sans-serif; cursor: pointer; }
