@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="17.792" height="17.792" viewBox="0 0 17.792 17.792" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="opacity">
+<path id="Ellipse 25802345" d="M15.568 8.896C15.568 12.5808 12.5808 15.568 8.896 15.568C5.21116 15.568 2.224 12.5808 2.224 8.896C2.224 5.21116 5.21116 2.224 8.896 2.224C12.5808 2.224 15.568 5.21116 15.568 8.896Z" stroke-width="1.48267" stroke="black"/>
+<g id="Ellipse 25802346">
+<use xlink:href="#stroke0_0_371" fill="black"/>
+<mask id="stroke1_0_371" fill="white">
+<use xlink:href="#stroke0_0_371"/>
+</mask>
+<path d="M16.3093 8.896C16.3093 12.9903 12.9903 16.3093 8.896 16.3093C8.89599 10.7493 8.89607 5.18933 8.896 1.48267C12.9903 1.48267 16.3093 4.80173 16.3093 8.896Z" stroke-width="2.96533" stroke="black" mask="url(#stroke1_0_371)"/>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_371" d="M16.3093 8.896C16.3093 12.9903 12.9903 16.3093 8.896 16.3093C8.89599 10.7493 8.89607 5.18933 8.896 1.48267C12.9903 1.48267 16.3093 4.80173 16.3093 8.896Z"/>
+</defs>
+</svg>
