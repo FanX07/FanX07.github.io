@@ -16,6 +16,7 @@
     html.querySelectorAll('script').forEach(script => script.remove());
     const cssFiles = await Promise.all(cssNames.map(getText));
     const fontStyles = [];
+    const propertyStyles = [];
     const families = [];
     cssFiles.forEach((css, index) => {
       css = css.replaceAll('../fonts/', 'fonts/').replace(/url\(([^)]+)\)/g, (match, value) => {
@@ -27,13 +28,18 @@
         const family = rule[0].match(/font-family:([^;]+)/)?.[1].replace(/^['"]|['"]$/g, '').replace(/\\:/g, ':');
         if (family) families.push(family);
       }
+      // @property declarations are document scoped. Without these defaults,
+      // Tailwind translate/rotate expressions become invalid inside a shadow tree.
+      for (const rule of css.matchAll(/@property\s+[^{}]+\{[^}]*\}/g)) {
+        propertyStyles.push(rule[0]);
+      }
       const style = document.createElement('style');
       style.textContent = css;
       root.append(style);
     });
     // Font faces belong to the document; the Figma typography utilities stay scoped.
     const fonts = document.createElement('style');
-    fonts.textContent = fontStyles.join('\n');
+    fonts.textContent = [...propertyStyles, ...fontStyles].join('\n');
     document.head.append(fonts);
     const layout = document.createElement('style');
     layout.textContent = `
