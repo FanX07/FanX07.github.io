@@ -5,7 +5,7 @@
   const root = host.attachShadow({ mode: 'open' });
   const nativeFetch = window.fetch.bind(window);
   const getText = async path => {
-    const response = await nativeFetch(new URL(path, base));
+    const response = await nativeFetch(new URL(path, base), { cache: 'no-cache' });
     if (!response.ok) throw new Error('Unable to load case study: ' + path);
     return response.text();
   };
@@ -18,7 +18,7 @@
     const fontStyles = [];
     const families = [];
     cssFiles.forEach((css, index) => {
-      css = css.replace(/url\(([^)]+)\)/g, (match, value) => {
+      css = css.replaceAll('../fonts/', 'fonts/').replace(/url\(([^)]+)\)/g, (match, value) => {
         const path = value.trim().replace(/^['"]|['"]$/g, '');
         return /^(data:|https?:|#)/.test(path) ? match : 'url("' + new URL(path, new URL(cssNames[index], base)).href + '")';
       });
