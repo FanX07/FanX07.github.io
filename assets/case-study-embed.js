@@ -47,7 +47,7 @@
       #viewer{display:grid;grid-template-columns:242px minmax(0,1fr);align-items:start;overflow:visible;width:100%}
       #sidebar{position:sticky;inset:auto;top:16px;width:auto;max-height:calc(100dvh - 32px);height:calc(100dvh - 32px);padding:18px 20px;z-index:20;box-sizing:border-box;background:transparent!important;border:0!important;display:flex!important;flex-direction:column;overflow:hidden} #contents{min-height:0;overflow-y:auto!important;overflow-x:hidden} #contents .contents-link{background:transparent!important;border-left:0!important;padding-left:0;color:#888} #contents .contents-link:hover,#contents .contents-link[aria-current=page]{background:transparent!important;color:#111} #contents .contents-link[aria-current=page]{font-weight:600} #contents summary{color:#333}
       :host([data-case-study="eufymake"]) .preview-locked #sidebar{display:flex!important} #sidebar .case-brand,#toolbar{display:none!important}
-      #sidebar h2{margin:0 0 24px}
+      #sidebar h2{margin:0 0 24px} #sidebar,#sidebar *{border-color:transparent!important} .sidebar-footer{border:0!important} #contents{scrollbar-width:thin;scrollbar-color:#bdbdbd transparent} #contents::-webkit-scrollbar{width:4px;height:4px;background:transparent} #contents::-webkit-scrollbar-track{background:transparent} #contents::-webkit-scrollbar-thumb{background:#bdbdbd;border:0;border-radius:10px}
       #reading-main{min-width:0;margin-left:0!important}
       #page-stage{overflow:visible;padding-top:0}
       .figma-page{scroll-margin-top:24px}
