@@ -1,6 +1,6 @@
 (async function () {
   const host = document.querySelector('[data-case-study]');
-  if (!host) return;
+  if (!host || matchMedia("(max-width: 800px)").matches) return;
   const base = new URL('/projects/' + host.dataset.caseStudy + '/', location.origin);
   const root = host.attachShadow({ mode: 'open' });
   const nativeFetch = window.fetch.bind(window);
@@ -51,6 +51,8 @@
       #reading-main{min-width:0;margin-left:0!important}
       #page-stage{overflow:visible;padding-top:0}
       .figma-page{scroll-margin-top:24px}
+      #page-15 [data-node-id="188:537"] > div,#page-15 [data-node-id="188:538"] > div,#page-16 [data-node-id="188:570"] div:has(>img){background:rgba(231,0,18,.5);clip-path:polygon(0 0,100% 50%,0 100%)}
+      #page-15 [data-node-id="188:537"] img,#page-15 [data-node-id="188:538"] img,#page-16 [data-node-id="188:570"] img{visibility:hidden}
       :host([data-case-study="netease"]) .preview-locked#viewer{display:block}
       #lightbox{max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px)}
       @media(min-width:1600px){#viewer{grid-template-columns:258px minmax(0,1fr)}}
