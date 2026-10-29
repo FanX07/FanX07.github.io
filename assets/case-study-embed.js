@@ -45,8 +45,8 @@
     layout.textContent = `
       :host{display:block;position:relative;width:calc(100vw - 80px);margin-left:calc(50% - 50vw + 40px);min-width:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#171717}
       #viewer{display:grid;grid-template-columns:242px minmax(0,1fr);align-items:start;overflow:visible;width:100%}
-      #sidebar{position:sticky;inset:auto;top:16px;width:auto;max-height:calc(100dvh - 32px);height:calc(100dvh - 32px);padding:18px 20px;z-index:20;box-sizing:border-box}
-      #sidebar .case-brand,#toolbar{display:none!important}
+      #sidebar{position:sticky;inset:auto;top:16px;width:auto;max-height:calc(100dvh - 32px);height:calc(100dvh - 32px);padding:18px 20px;z-index:20;box-sizing:border-box;background:transparent!important;border:0!important;display:flex!important;flex-direction:column;overflow:hidden} #contents{min-height:0;overflow-y:auto!important;overflow-x:hidden} #contents .contents-link{background:transparent!important;border-left:0!important;padding-left:0;color:#888} #contents .contents-link:hover,#contents .contents-link[aria-current=page]{background:transparent!important;color:#111} #contents .contents-link[aria-current=page]{font-weight:600} #contents summary{color:#333}
+      :host([data-case-study="eufymake"]) .preview-locked #sidebar{display:flex!important} #sidebar .case-brand,#toolbar{display:none!important}
       #sidebar h2{margin:0 0 24px}
       #reading-main{min-width:0;margin-left:0!important}
       #page-stage{overflow:visible;padding-top:0}
@@ -55,10 +55,11 @@
       #lightbox{max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px)}
       @media(min-width:1600px){#viewer{grid-template-columns:258px minmax(0,1fr)}}
       @media(max-width:800px){
+        :host{width:calc(100vw - 24px);margin-left:calc(50% - 50vw + 12px)}
         #viewer{display:block}
-        #sidebar{position:relative;top:auto;height:auto;max-height:none;transform:none!important;width:auto;padding:16px 12px}
+        #sidebar{position:relative;top:auto;height:auto;max-height:none;transform:none!important;width:auto;padding:16px 12px;overflow:visible}
         #sidebar h2{margin-bottom:12px;font-size:18px}
-        #contents{display:flex;gap:14px;overflow:auto;max-height:220px;flex:none}
+        #contents{display:flex;gap:14px;overflow-x:auto!important;overflow-y:hidden!important;max-height:none;flex:none}
         #contents details{min-width:180px;margin-bottom:8px}
         .nav-caption,.sidebar-footer{display:none}
       }
