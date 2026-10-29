@@ -43,7 +43,7 @@
     document.head.append(fonts);
     const layout = document.createElement('style');
     layout.textContent = `
-      :host{display:block;position:relative;width:calc(100vw - 40px);margin-left:calc(50% - 50vw + 20px);min-width:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#171717}
+      :host{display:block;position:relative;width:calc(100vw - 80px);margin-left:calc(50% - 50vw + 40px);min-width:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#171717}
       #viewer{display:grid;grid-template-columns:242px minmax(0,1fr);align-items:start;overflow:visible;width:100%}
       #sidebar{position:sticky;inset:auto;top:16px;width:auto;max-height:calc(100dvh - 32px);height:calc(100dvh - 32px);padding:18px 20px;z-index:20;box-sizing:border-box}
       #sidebar .case-brand,#toolbar{display:none!important}
