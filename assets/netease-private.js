@@ -55,7 +55,7 @@
         const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'})); urls.push(url);
         const figure=document.createElement('figure'); figure.dataset.page=page.number;
         const button=document.createElement('button'); button.type='button'; button.className='private-gallery__image-button'; button.setAttribute('aria-label',`Expand page ${page.number}: ${page.title}`);
-        const image=document.createElement('img'); image.src=url; image.alt=page.title; image.width=page.width; image.height=page.height; image.loading=index===0?'eager':'lazy'; image.decoding='async';
+        const image=document.createElement('img'); const isWorkflowPage=/design\s*workflow/i.test(page.title||''); image.src=isWorkflowPage?'/assets/netease-design-workflow.png':url; image.alt=page.title; image.width=isWorkflowPage?1920:page.width; image.height=isWorkflowPage?1080:page.height; image.loading=index===0?'eager':'lazy'; image.decoding='async';
         button.append(image); button.addEventListener('click',()=>{const expanded=viewer.querySelector('img');expanded.src=url;expanded.alt=page.title;viewer.showModal();});
         const caption=document.createElement('figcaption'); caption.textContent=`${String(index+1).padStart(2,'0')} / ${pages.length}`;
         figure.append(button,caption);fragment.append(figure);
