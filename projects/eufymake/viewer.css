@@ -23,3 +23,16 @@ body{background:#fff}#viewer{overflow:visible}#sidebar{position:fixed;inset:0 au
 .is-revealed.reveal-layer{animation:layer-arrive 1.9s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--reveal-delay,0ms)}@keyframes layer-arrive{from{opacity:0;filter:blur(2px)}to{opacity:1;filter:blur(0)}}.motion-trigger,.reveal-trigger{opacity:0;pointer-events:none!important}.raster-annotation{pointer-events:none!important;z-index:4}.sequenced-layer{will-change:opacity}.is-revealed.reveal-trigger{animation:none}@media(prefers-reduced-motion:reduce){.is-revealed.reveal-layer{animation:none;opacity:1;filter:none}}
 /* Preserve the original single-line stage label. */
 #page-4 [data-node-id="1:4907"]{white-space:nowrap!important;word-break:normal!important;width:max-content!important;flex-shrink:0}
+
+/* Native Figma layer fonts and transparent screen interactions. */
+@font-face{font-family:"Alibaba PuHuiTi 2.0";font-weight:300;src:url(fonts/f0.ttf);font-display:block}
+@font-face{font-family:"Alibaba PuHuiTi 2.0";font-weight:400;src:url(fonts/f1.ttf);font-display:block}
+@font-face{font-family:"Alibaba PuHuiTi 2.0";font-weight:500;src:url(fonts/f2.ttf);font-display:block}
+@font-face{font-family:"Alibaba PuHuiTi 2.0";font-weight:600;src:url(fonts/f3.ttf);font-display:block}
+@font-face{font-family:"Alibaba PuHuiTi 2.0";font-weight:700;src:url(fonts/f4.ttf);font-display:block}
+@font-face{font-family:"Mont For Anker";font-weight:400;src:url(fonts/f15.ttf);font-display:block}
+@font-face{font-family:"Mont For Anker";font-weight:500;src:url(fonts/f14.ttf);font-display:block}
+@font-face{font-family:"Mont For Anker";font-weight:600;src:url(fonts/f16.ttf);font-display:block}
+@font-face{font-family:"Mont For Anker";font-weight:700;src:url(fonts/f13.ttf);font-display:block}
+[data-exact-figma] [data-exact-screen]{pointer-events:all!important;outline:none}[data-exact-figma] [data-exact-screen] *{pointer-events:auto!important}[data-exact-figma] text{user-select:text}#detail>svg{max-width:none;max-height:none}
+#lightbox{max-width:none!important;max-height:none!important}
