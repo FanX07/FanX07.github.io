@@ -8,3 +8,4 @@ if(innerWidth<=700&&matchMedia('(pointer: coarse)').matches){const hint=document
 
 // Phones: show the tapped chapter's name for a moment, like the desktop hover label.
 (()=>{const nav=document.querySelector('.bookmark-nav');if(!nav)return;const toast=document.createElement('div');toast.className='bookmark-toast';toast.setAttribute('aria-hidden','true');document.body.append(toast);let timer;nav.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||innerWidth>700)return;toast.textContent=(a.querySelector('.bookmark-label')?.textContent||a.getAttribute('aria-label')||'').trim();if(!toast.textContent)return;document.querySelector('.zoom-hint')?.remove();toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),1600)})})();
+

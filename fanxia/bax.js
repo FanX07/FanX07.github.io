@@ -38,3 +38,15 @@ if(innerWidth<=700&&matchMedia('(pointer: coarse)').matches){const hint=document
 
 // Phones: show the tapped chapter's name for a moment, like the desktop hover label.
 (()=>{const nav=document.querySelector('.bookmark-nav');if(!nav)return;const toast=document.createElement('div');toast.className='bookmark-toast';toast.setAttribute('aria-hidden','true');document.body.append(toast);let timer;nav.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||innerWidth>700)return;toast.textContent=(a.querySelector('.bookmark-label')?.textContent||a.getAttribute('aria-label')||'').trim();if(!toast.textContent)return;document.querySelector('.zoom-hint')?.remove();toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),1600)})})();
+
+// Scroll one step through the three approaches; release normal page scroll at both ends.
+(()=>{const section=document.querySelector('#approach');let sum=0,last=0,lockedUntil=0;addEventListener('wheel',e=>{
+ if(innerWidth<=700||e.ctrlKey||!section||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+ const r=section.getBoundingClientRect(),now=performance.now();if(r.top>120||r.bottom<Math.min(innerHeight*.65,r.height*.7)){sum=0;return}
+ if(now<lockedUntil){e.preventDefault();return}
+ const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?innerHeight:1),dir=Math.sign(delta);if(!dir)return;
+ if((dir>0&&approachIndex===panels.length-1)||(dir<0&&approachIndex===0)){sum=0;return}
+ e.preventDefault();if(now-last>220||Math.sign(sum)!==dir)sum=0;last=now;sum+=delta;
+ if(Math.abs(sum)>=65){switchApproach(approachIndex+dir);sum=0;lockedUntil=now+720}
+ },{passive:false})})();
+

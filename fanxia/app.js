@@ -21,7 +21,8 @@ document.querySelectorAll('.hanger').forEach(card=>{observer.observe(card);const
   if(hatState==='placed')resetHat();
   pet.classList.add('pet-active');goal={type:'food',food};
  }
- document.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||goal||eatingUntil)return;moveTo(e.clientX-34,e.clientY+42)});
+ document.addEventListener('pointermove',e=>{if(goal?.type==='inspiration'&&!e.target.closest('.wisdom'))goal=null;if(e.pointerType==='touch'||goal||eatingUntil)return;moveTo(e.clientX-34,e.clientY+42)});
+ document.querySelector('#inspiration').addEventListener('click',()=>{if(hatState==='placed')resetHat();pet.classList.add('pet-active');goal={type:'inspiration'}});
  document.addEventListener('click',e=>{
   const food=e.target.closest('.dessert-shelf figure');
   if(food){eat(food);return}
@@ -39,6 +40,7 @@ document.querySelectorAll('.hanger').forEach(card=>{observer.observe(card);const
  });
  function frame(now){
   const dt=Math.min((now-last)/1000,.05)||.016;last=now;
+  if(goal?.type==='inspiration'){const q=document.querySelector('#quote'),r=q.getBoundingClientRect();if(q.hidden||r.bottom<0||r.top>innerHeight){goal=null;tx=x;ty=y}else moveTo(r.left+16,r.top+r.height/2)}
   if(goal?.type==='hat'){const {h}=bounds();moveTo(goal.x,goal.y+h*.28)}
   if(goal?.type==='food'){
    const food=goal.food,r=food.getBoundingClientRect();
@@ -54,7 +56,7 @@ document.querySelectorAll('.hanger').forEach(card=>{observer.observe(card);const
   pet.querySelector('.front-idle').style.display=!moving&&!wearing?'inline':'none';
   pet.querySelectorAll('.walking-drawing').forEach((g,i)=>{g.style.display=moving&&i===Math.floor(now/280)%2?'inline':'none';g.setAttribute('transform',dx<0?'translate(655 10) scale(-5.15 4.2)':'translate(55 10) scale(5.15 4.2)')});
   pet.style.transform='translate3d('+x+'px,'+y+'px,0)';
-  if(goal&&d<3){
+  if(goal&&goal.type!=='inspiration'&&d<3){
    if(goal.type==='hat'){hatState='worn';pet.classList.add('wearing-hat');hat.classList.remove('visible')}
    else{const food=goal.food;food.dataset.eaten='true';food.setAttribute('aria-hidden','true');food.removeAttribute('tabindex');food.removeAttribute('role');food.dispatchEvent(new CustomEvent('dessert-eaten',{bubbles:true}));pet.classList.add('eating');eatingUntil=now+650}
    goal=null;
@@ -88,3 +90,4 @@ document.querySelectorAll('.hanger').forEach(card=>{observer.observe(card);const
 
 // Touch screens have no hover: describe the gestures that actually work there.
 (()=>{const note=document.querySelector('.footnote span:last-child');const touch=matchMedia('(hover: none)');function label(){if(note)note.textContent=touch.matches?'SWIPE TO BROWSE · TAP TO EXPLORE':'HOVER TO FLIP · CLICK TO EXPLORE'}touch.addEventListener('change',label);label()})();
+

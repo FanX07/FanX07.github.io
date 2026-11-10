@@ -18,275 +18,276 @@
 .sc17{position:absolute;inset:0;max-width:none;object-fit:cover;pointer-events:none;width:100%;height:100%}
 .sc18{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;left:161px;font-style:normal;font-size:36px;color:#000;top:1643px;white-space:nowrap}
 .sc19{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;left:161px;font-style:normal;font-size:36px;color:#000;top:2368px;white-space:nowrap}
-.sc20{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:107px;line-height:0;left:161px;font-style:normal;color:#333847;font-size:16px;top:1717px;letter-spacing:-0.32px;width:1190px;white-space:pre-wrap}
+.sc20{word-break:break-word;position:absolute;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;height:127px;line-height:0;left:161px;font-style:normal;color:#333847;font-size:20px;top:1717px;letter-spacing:-0.4px;width:1190px;white-space:pre-wrap}
 .sc21{line-height:1.5;margin-bottom:0}
 .sc22{line-height:1.5}
-.sc23{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;left:161px;font-style:normal;font-size:36px;color:#000;top:1935px;white-space:nowrap}
-.sc24{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:0;left:161px;font-style:normal;color:#333847;font-size:16px;top:2009px;letter-spacing:-0.32px;width:1190px;white-space:pre-wrap}
-.sc25{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;left:161px;font-style:normal;color:#333847;font-size:16px;top:2437px;letter-spacing:-0.32px;width:1190px}
+.sc23{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;left:161px;font-style:normal;font-size:36px;color:#000;top:1985px;white-space:nowrap}
+.sc24{word-break:break-word;position:absolute;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;left:161px;font-style:normal;color:#333847;font-size:20px;top:2059px;letter-spacing:-0.4px;width:1190px;white-space:pre-wrap}
+.sc25{word-break:break-word;position:absolute;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.5;left:161px;font-style:normal;color:#333847;font-size:20px;top:2437px;letter-spacing:-0.4px;width:1190px}
 .sc26{position:absolute;height:670px;left:161px;top:885px;width:1190px}
 .sc27{position:absolute;height:524.344px;left:161px;top:13433px;width:1190px}
 .sc28{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:200px;align-items:flex-start;left:161px;overflow:clip;top:4205px}
 .sc29{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;gap:24px;align-items:flex-start;font-style:normal;overflow:clip;position:relative;flex-shrink:0}
 .sc30{font-family:"Inter",sans-serif;font-weight:700;font-weight:700;line-height:1.5;position:relative;flex-shrink:0;font-size:36px;color:#000;width:1190px}
-.sc31{font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:1190px;white-space:pre-wrap}
+.sc31{font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;position:relative;flex-shrink:0;color:#333847;font-size:20px;letter-spacing:-0.4px;width:1190px;white-space:pre-wrap}
 .sc32{align-content:stretch;display:flex;flex-direction:column;gap:300px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
 .sc33{align-content:stretch;display:flex;flex-direction:column;gap:24px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
 .sc34{align-content:stretch;display:flex;flex-direction:column;gap:16px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
 .sc35{height:0;position:relative;flex-shrink:0;width:1190px}
 .sc36{position:absolute;inset:-1px 0 0 0}
 .sc37{display:block;max-width:none;width:100%;height:100%}
-.sc38{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:16px;width:1190px;white-space:pre-wrap}
-.sc39{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;gap:12px;align-items:flex-start;line-height:0;font-style:normal;overflow:clip;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px}
-.sc40{position:relative;flex-shrink:0;width:760px}
-.sc41{font-family:"Inter",sans-serif;font-weight:700;font-weight:700;line-height:1.5}
-.sc42{align-content:stretch;display:flex;flex-direction:column;align-items:flex-start;overflow:clip;padding-top:24px;position:relative;flex-shrink:0}
-.sc43{align-content:stretch;display:flex;flex-direction:column;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
-.sc44{height:956.25px;overflow:clip;position:relative;flex-shrink:0;width:1190px}
-.sc45{position:absolute;display:contents;left:-510px;top:0}
-.sc46{position:absolute;background-color:#fff;height:956.25px;left:-510px;overflow:clip;top:0;width:1700px}
-.sc47{position:absolute;background-color:white;height:956.25px;left:0;top:0;width:1700px}
-.sc48{position:absolute;display:flex;height:956.25px;align-items:center;justify-content:center;right:0;top:0;width:1190.885px}
-.sc49{scale:1 -1;flex:none;rotate:180deg}
-.sc50{background-color:#f2f5fa;height:956.25px;position:relative;width:1190.885px}
-.sc51{position:absolute;display:contents;inset:47.52% 45.45% 49.86% 40.91%}
-.sc52{position:absolute;inset:47.52% 46.17% 49.86% 45.08%}
-.sc53{position:absolute;display:block;inset:0;max-width:none;width:100%;height:100%}
-.sc54{position:absolute;display:contents;inset:48.21% 45.45% 49.86% 40.91%}
-.sc55{position:absolute;inset:48.21% 45.45% 49.86% 40.91%}
-.sc56{position:absolute;inset:-1.67% 0}
-.sc57{position:absolute;display:flex;inset:48.21% 58.01% 49.86% 40.91%;align-items:center;justify-content:center}
-.sc58{flex:none;height:100cqw;rotate:90deg;width:100cqh}
-.sc59{position:relative;width:100%;height:100%}
-.sc60{position:absolute;display:contents;inset:78.5% 48.18% 19.56% 40.91%}
-.sc61{position:absolute;inset:78.5% 48.18% 19.56% 40.91%}
-.sc62{position:absolute;display:flex;inset:78.51% 58.01% 19.56% 40.91%;align-items:center;justify-content:center}
-.sc63{position:absolute;display:contents;inset:53.63% 40.91% 42.91% 40.91%}
-.sc64{position:absolute;inset:53.63% 43.35% 42.91% 45.08%}
-.sc65{position:absolute;display:contents;inset:54.51% 40.91% 42.91% 40.91%}
-.sc66{position:absolute;inset:54.51% 40.91% 42.91% 40.91%}
-.sc67{position:absolute;inset:-1.25% 0}
-.sc68{position:absolute;display:flex;inset:54.52% 57.65% 42.91% 40.91%;align-items:center;justify-content:center}
-.sc69{position:absolute;display:contents;inset:85.25% 44.63% 13.46% 40.91%}
-.sc70{position:absolute;inset:85.25% 44.63% 13.46% 40.91%}
-.sc71{position:absolute;inset:-2.51% 0}
-.sc72{position:absolute;display:flex;inset:85.25% 58.37% 13.46% 40.91%;align-items:center;justify-content:center}
-.sc73{position:absolute;display:contents;inset:60.58% 36.56% 35.09% 40.71%}
-.sc74{position:absolute;inset:60.58% 40.43% 35.09% 45.08%}
-.sc75{position:absolute;display:contents;inset:61.69% 36.56% 35.09% 40.71%}
-.sc76{position:absolute;inset:61.69% 36.56% 35.09% 40.71%}
-.sc77{position:absolute;inset:-1.43% 0}
-.sc78{position:absolute;display:flex;inset:61.7% 57.48% 35.09% 40.71%;align-items:center;justify-content:center}
-.sc79{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;left:637.84px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:254.11px;width:450.333px}
-.sc80{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;height:23.817px;line-height:1.5;left:637.84px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:394.9px;width:353.184px}
-.sc81{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;height:23.817px;line-height:1.5;left:637.84px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:692.54px;width:353.184px}
-.sc82{position:absolute;display:contents;left:1155.56px;top:298.47px}
-.sc83{position:absolute;height:554.91px;left:1179.24px;overflow:clip;top:298.47px;width:392.035px}
-.sc84{position:absolute;inset:0 0 0 0.01%}
-.sc85{position:absolute;display:flex;inset:0 93.73% 95.57% 0;align-items:center;justify-content:center}
-.sc86{position:absolute;display:flex;inset:95.57% 0 0 93.73%;align-items:center;justify-content:center}
-.sc87{position:absolute;display:flex;inset:0 0 95.57% 93.73%;align-items:center;justify-content:center}
-.sc88{position:absolute;display:flex;inset:95.57% 93.73% 0 0;align-items:center;justify-content:center}
-.sc89{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:1.56% 95.11% 96.6% 1.42%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
-.sc90{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:96.98% 95.11% 1.18% 1.42%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
-.sc91{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:1.56% 1.4% 96.6% 95.13%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
-.sc92{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:96.98% 1.46% 1.18% 95.07%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
-.sc93{position:absolute;inset:-0.05% 5.97% 0.04% 6.36%}
-.sc94{position:absolute;inset:31.21% 30.86% 66.21% 68.75%}
-.sc95{position:absolute;inset:-1.8% 0 -1.8% -6.68%}
-.sc96{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:23.783px;line-height:21.25px;left:1155.56px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:299.31px;width:9.469px}
-.sc97{position:absolute;display:contents;left:638.57px;top:460.81px}
-.sc98{position:absolute;inset:48.19% 59.43% 49.83% 40.18%}
-.sc99{position:absolute;inset:-2.34% 0 -2.34% -6.68%}
-.sc100{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:460.81px;width:42.613px}
-.sc101{position:absolute;display:contents;left:638.57px;top:750.52px}
-.sc102{position:absolute;inset:78.49% 59.43% 19.53% 40.18%}
-.sc103{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:750.52px;width:42.613px}
-.sc104{position:absolute;display:contents;left:638.57px;top:521.26px}
-.sc105{position:absolute;inset:54.51% 59.43% 42.91% 40.18%}
-.sc106{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:524.23px;width:42.613px}
-.sc107{position:absolute;display:contents;left:638.57px;top:810.13px}
-.sc108{position:absolute;inset:85.25% 59.43% 13.46% 40.18%}
-.sc109{position:absolute;inset:-3.6% 0 -3.6% -6.68%}
-.sc110{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:810.13px;width:42.613px}
-.sc111{position:absolute;display:contents;left:638.57px;top:590.09px}
-.sc112{position:absolute;inset:61.71% 59.43% 35.12% 40.18%}
-.sc113{position:absolute;inset:-1.46% 0 -1.46% -6.68%}
-.sc114{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:595.91px;width:42.613px}
-.sc115{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;height:18.434px;left:calc(50% - 52.13px);top:750.75px;width:63.122px}
-.sc116{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;height:12.296px;left:calc(50% - 14.56px);top:815.21px;width:138.268px}
-.sc117{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;bottom:0;align-content:stretch;display:flex;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;align-items:center;justify-content:space-between;left:50%;font-style:normal;padding-left:84.115px;padding-right:44.271px;padding-top:39.844px;padding-bottom:39.844px;font-size:12.4px;color:color:var(--neutral/gray-4,#8d9bb1);width:1700px;white-space:nowrap}
-.sc118{line-height:1.5;position:relative;flex-shrink:0;text-align:justify}
-.sc119{display:flex;flex-direction:column;justify-content:center;line-height:0;opacity:0.0;position:relative;flex-shrink:0;text-align:right}
-.sc120{position:absolute;inset:33.79% 20.43% 63.59% 70.81%}
-.sc121{position:absolute;inset:84.74% 9.02% 13.33% 87.27%}
-.sc122{position:absolute;inset:39.67% 17.62% 56.87% 70.81%}
-.sc123{position:absolute;inset:46.32% 14.69% 49.35% 70.81%}
-.sc124{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:35.417px;height:857.969px;align-items:flex-start;left:0;padding-top:123.958px;padding-left:84.115px;padding-right:84.115px;top:0;width:509.115px}
-.sc125{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:500;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:31.875px;color:color:var(--neutral/black,#080a0f);width:100%}
-.sc126{align-content:stretch;display:flex;flex-direction:column;align-items:flex-start;position:relative;flex-shrink:0;width:100%}
-.sc127{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:15.938px;color:color:var(--neutral/gray-6,#333847);width:100%}
-.sc128{position:absolute;align-content:stretch;display:flex;align-items:center;left:0;padding-left:84.115px;padding-right:84.115px;padding-top:39.844px;padding-bottom:39.844px;top:0;width:1700px}
-.sc129{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:12.4px;color:color:var(--neutral/gray-4,#8d9bb1);white-space:nowrap}
-.sc130{position:absolute;display:contents;left:638.85px;top:157.65px}
-.sc131{position:absolute;inset:16.49% 8.33% 79.63% 40.88%}
-.sc132{position:absolute;display:contents;left:638.85px;top:166.62px}
-.sc133{position:absolute;background-color:#cff1fd;left:638.85px;width:19.373px;height:19.373px;top:166.62px}
-.sc134{position:absolute;inset:17.42% 7.57% 82.58% 37.58%}
-.sc135{position:absolute;inset:-0.31px 0}
-.sc136{position:absolute;inset:19.45% 7.57% 80.55% 37.58%}
-.sc137{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:19.534px;line-height:21.25px;left:644.77px;font-style:normal;font-size:10.625px;color:color:var(--neutral/gray-6,#333847);top:166.45px;width:8.056px}
-.sc138{align-content:stretch;display:flex;gap:64px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
-.sc139{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:340px}
-.sc140{align-content:stretch;display:flex;flex-direction:column;gap:14px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
-.sc141{height:631.607px;overflow:clip;position:relative;flex-shrink:0;width:786px}
-.sc142{position:absolute;background-color:white;height:631.607px;left:-336.86px;overflow:clip;top:0;width:1122.857px}
-.sc143{position:absolute;background-color:white;height:631.607px;left:0;top:0;width:1122.857px}
-.sc144{position:absolute;display:flex;height:631.607px;align-items:center;justify-content:center;right:0;top:0;width:786.585px}
-.sc145{background-color:#f2f5fa;height:631.607px;position:relative;width:786.585px}
-.sc146{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;bottom:0;align-content:stretch;display:flex;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;align-items:center;justify-content:space-between;left:50%;font-style:normal;padding-left:55.558px;padding-right:29.241px;padding-top:26.317px;padding-bottom:26.317px;font-size:8.19px;color:color:var(--neutral/gray-4,#8d9bb1);width:1122.857px;white-space:nowrap}
-.sc147{word-break:break-word;position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:23.393px;height:566.692px;align-items:flex-start;left:0;font-style:normal;padding-top:81.875px;padding-left:55.558px;padding-right:55.558px;top:0;width:336.272px}
-.sc148{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:500;line-height:1.5;position:relative;flex-shrink:0;font-size:21.054px;color:color:var(--neutral/black,#080a0f);width:100%}
-.sc149{align-content:stretch;display:flex;flex-direction:column;gap:5.848px;align-items:flex-start;position:relative;flex-shrink:0;font-size:10.527px;color:color:var(--neutral/gray-6,#333847);width:100%}
-.sc150{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;position:relative;flex-shrink:0;width:100%}
-.sc151{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:353.147px;line-height:0;position:relative;flex-shrink:0;width:100%}
-.sc152{margin-bottom:0}
-.sc153{list-style-type:disc;margin-inline-start:15.790499999999998px}
-.sc154{line-height:1.5;margin-bottom:0;white-space:pre-wrap}
-.sc155{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;margin-bottom:0;white-space:pre-wrap}
-.sc156{list-style-type:disc;margin-bottom:0}
-.sc157{margin-bottom:0;margin-inline-start:15.790499999999998px}
-.sc158{margin-inline-start:15.790499999999998px}
-.sc159{white-space:pre-wrap}
-.sc160{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;font-style:normal}
-.sc161{position:absolute;align-content:stretch;display:flex;align-items:center;left:0;padding-left:55.558px;padding-right:55.558px;padding-top:26.317px;padding-bottom:26.317px;top:0;width:1122.857px}
-.sc162{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:8.19px;color:color:var(--neutral/gray-4,#8d9bb1);white-space:nowrap}
-.sc163{position:absolute;display:contents;left:419.95px;top:337.9px}
-.sc164{position:absolute;display:contents;left:419.95px;top:345.05px}
-.sc165{position:absolute;align-content:stretch;display:flex;flex-direction:column;height:221.647px;align-items:flex-start;justify-content:space-between;left:419.95px;top:345.05px;width:457.594px}
-.sc166{position:absolute;inset:0;pointer-events:none}
-.sc167{position:absolute;background-color:white;inset:0}
-.sc168{position:absolute;inset:0;overflow:hidden}
-.sc169{position:absolute;height:100%;left:-0.75%;max-width:none;top:0;width:110.54%}
-.sc170{position:absolute;inset:0;mix-blend-mode:screen}
-.sc171{align-content:stretch;display:flex;flex-direction:column;gap:3.813px;align-items:flex-end;line-height:0;padding-bottom:3.813px;padding-top:5.72px;padding-left:30.506px;padding-right:30.506px;position:relative;flex-shrink:0;width:457.594px}
-.sc172{grid-template-columns:max-content;grid-template-rows:max-content;display:inline-grid;place-items:start;position:relative;flex-shrink:0}
-.sc173{grid-column:1;grid-template-columns:max-content;grid-template-rows:max-content;display:inline-grid;margin-left:360.36px;margin-top:0;place-items:start;position:relative;grid-row:1}
-.sc174{grid-column:1;margin-left:0;margin-top:0;position:relative;grid-row:1;width:4.767px;height:4.767px}
-.sc175{grid-column:1;align-content:stretch;display:flex;gap:5.72px;align-items:center;margin-left:10.49px;margin-top:0;position:relative;grid-row:1}
-.sc176{position:relative;flex-shrink:0;width:4.767px;height:4.767px}
-.sc177{grid-column:1;height:4.767px;margin-left:0;margin-top:0;position:relative;grid-row:1;width:87.705px}
-.sc178{position:absolute;display:flex;height:3.813px;align-items:center;justify-content:center;left:30.98px;top:0.48px;width:0}
-.sc179{flex:none;rotate:90deg}
-.sc180{height:0;position:relative;width:3.813px}
-.sc181{position:absolute;inset:-0.25px 0 0 0}
-.sc182{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:600;line-height:5.72px;left:33.84px;font-style:normal;color:#1d1d1f;font-size:3.813px;top:-0.24px;white-space:nowrap}
-.sc183{position:absolute;height:4.767px;left:0;top:-0.95px;width:28.039px}
-.sc184{position:absolute;inset:0 0 -0.01% 0}
-.sc185{word-break:break-word;align-content:stretch;display:flex;font-family:"Mont For Anker",sans-serif;font-weight:600;align-items:center;justify-content:space-between;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.337px;letter-spacing:-0.0667px;width:100%;white-space:nowrap}
-.sc186{align-content:stretch;display:flex;gap:5.72px;align-items:flex-start;position:relative;flex-shrink:0}
-.sc187{display:flex;flex-direction:column;justify-content:center;position:relative;flex-shrink:0}
-.sc188{line-height:1.4}
-.sc189{display:flex;flex-direction:column;justify-content:center;position:relative;flex-shrink:0;text-align:center}
-.sc190{align-content:stretch;display:flex;gap:5.72px;align-items:center;position:relative;flex-shrink:0;text-align:center}
-.sc191{align-content:stretch;display:flex;flex:1 0 0;flex-direction:column;gap:7.627px;align-items:flex-start;justify-content:center;min-height:1px;padding-left:30.506px;padding-right:30.506px;position:relative;width:100%}
-.sc192{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;gap:3.813px;align-items:flex-start;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;width:163.494px}
-.sc193{line-height:1;position:relative;flex-shrink:0;font-size:15.253px;letter-spacing:-0.6101px;width:100%}
-.sc194{line-height:1.4;position:relative;flex-shrink:0;font-size:4.29px;letter-spacing:-0.0858px;width:100%}
-.sc195{align-content:stretch;display:flex;gap:3.813px;align-items:center;position:relative;flex-shrink:0}
-.sc196{border-color:#1d1d1f;border-width:0.381px;border-style:solid;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:3.337px;padding-top:3.575px;padding-left:6.673px;padding-right:6.673px;position:relative;border-radius:5.72px;flex-shrink:0}
-.sc197{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.81px;text-align:center;letter-spacing:-0.1524px;white-space:nowrap}
-.sc198{line-height:1.2}
-.sc199{background-color:#1d1d1f;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:3.337px;padding-top:3.575px;padding-left:6.673px;padding-right:6.673px;position:relative;border-radius:5.72px;flex-shrink:0}
-.sc200{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;font-size:3.81px;text-align:center;color:#fff;letter-spacing:-0.1524px;white-space:nowrap}
-.sc201{align-content:stretch;display:flex;gap:2.86px;align-items:center;padding-bottom:5.72px;padding-left:30.506px;padding-right:30.506px;position:relative;flex-shrink:0;width:100%}
-.sc202{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.337px;letter-spacing:-0.0667px;white-space:nowrap}
-.sc203{line-height:1.4;margin-bottom:0}
-.sc204{background-color:#1d1d1f;height:8.103px;position:relative;flex-shrink:0;width:0.238px}
-.sc205{position:absolute;background-color:black;height:7.15px;left:419.95px;top:337.9px;width:457.594px}
-.sc206{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;height:2.383px;left:calc(50% + 295.55px);top:340.28px;width:26.802px}
-.sc207{position:absolute;display:contents;left:922.95px;top:337.9px}
-.sc208{position:absolute;height:7.153px;left:922.95px;top:337.9px;width:92.987px}
-.sc209{position:absolute;display:contents;left:922.95px;top:345.05px}
-.sc210{position:absolute;height:157.362px;left:922.95px;top:345.05px;width:92.987px}
-.sc211{position:absolute;height:100%;left:-89.92%;max-width:none;top:0;width:208.28%}
-.sc212{position:absolute;background-image:linear-gradient(to bottom,var(--gradient-from),var(--gradient-to));--gradient-from:80.303%;--gradient-from:rgba(234,232,229,0);inset:0;--gradient-to:#eae8e5}
-.sc213{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:5.722px;height:106.1px;align-items:flex-start;left:0;padding-left:3.815px;padding-right:3.815px;top:23.84px;width:92.987px}
-.sc214{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;gap:0.954px;align-items:flex-start;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;width:100%}
-.sc215{line-height:1;min-width:100%;position:relative;flex-shrink:0;font-size:9.537px;letter-spacing:-0.3815px;width:min-content}
-.sc216{line-height:1.4;position:relative;flex-shrink:0;font-size:3.338px;letter-spacing:-0.0668px;width:81.542px}
-.sc217{align-content:stretch;display:flex;gap:2.861px;align-items:center;position:relative;flex-shrink:0}
-.sc218{border-color:#1d1d1f;border-width:0.381px;border-style:solid;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:2.384px;padding-top:2.623px;padding-left:4.769px;padding-right:4.769px;position:relative;border-radius:4.53px;flex-shrink:0}
-.sc219{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.34px;text-align:center;letter-spacing:-0.1336px;white-space:nowrap}
-.sc220{background-color:#1d1d1f;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:2.384px;padding-top:2.623px;padding-left:4.769px;padding-right:4.769px;position:relative;border-radius:4.53px;flex-shrink:0}
-.sc221{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;font-size:3.34px;text-align:center;color:#fff;letter-spacing:-0.1336px;white-space:nowrap}
-.sc222{position:absolute;align-content:stretch;display:flex;gap:1.907px;height:15.975px;align-items:center;left:0;padding-bottom:3.815px;padding-left:3.815px;padding-right:3.815px;top:141.39px;width:92.987px}
-.sc223{word-break:break-word;display:flex;flex:1 0 0;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;min-width:1px;font-style:normal;position:relative;color:#1d1d1f;font-size:2.861px;letter-spacing:-0.0572px}
-.sc224{background-color:#1d1d1f;height:8.107px;position:relative;flex-shrink:0;width:0.238px}
-.sc225{position:absolute;display:contents;left:3.81px;top:3.82px}
-.sc226{position:absolute;height:4.769px;left:67.24px;top:3.82px;width:21.935px}
-.sc227{position:absolute;left:0;width:4.769px;height:4.769px;top:0}
-.sc228{position:absolute;left:8.58px;width:4.769px;height:4.769px;top:0}
-.sc229{position:absolute;left:17.17px;width:4.769px;height:4.769px;top:0}
-.sc230{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:0.715px;inset:20% 10%;align-items:flex-start}
-.sc231{background-color:#1d1d1f;height:0.477px;position:relative;border-radius:6.159px;flex-shrink:0;width:100%}
-.sc232{position:absolute;display:flex;height:2.655px;align-items:center;justify-content:center;left:25.39px;top:4.81px;width:0}
-.sc233{height:0;position:relative;width:2.655px}
-.sc234{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:600;height:3.983px;line-height:4.292px;left:27.38px;font-style:normal;color:#1d1d1f;font-size:2.623px;top:4.31px;width:27.218px}
-.sc235{position:absolute;height:3.319px;left:3.81px;top:3.82px;width:19.525px}
-.sc236{position:absolute;inset:0 0 0.01% 0}
-.sc237{position:absolute;background-color:white;border-width:0.35px;border-color:#000;border-style:solid;height:222.232px;left:420px;overflow:clip;top:84.18px;width:457.33px}
-.sc238{position:absolute;display:contents;left:calc(100% - 30.14px);top:-0.35px}
-.sc239{position:absolute;background-color:white;height:274.179px;left:calc(100% - 30.49px);top:0;width:30.489px}
-.sc240{position:absolute;display:contents;left:-0.35px;top:-0.35px}
-.sc241{position:absolute;background-color:white;height:274.179px;left:0;top:0;width:30.489px}
-.sc242{position:absolute;align-content:stretch;display:flex;height:254.898px;align-items:center;left:-0.35px;padding-left:30.489px;padding-right:30.489px;top:-0.35px;width:457.33px}
-.sc243{background-color:#e8eeef;height:254.898px;position:relative;flex-shrink:0;width:25.796px}
-.sc244{height:254.898px;position:relative;flex-shrink:0;width:7.87px}
-.sc245{position:absolute;background-color:#fff;inset:0.09% 0 -0.09% 0}
-.sc246{height:254.898px;position:relative;flex-shrink:0;width:7.433px}
-.sc247{background-color:#e8eeef;height:254.898px;position:relative;flex-shrink:0;width:26.233px}
-.sc248{position:absolute;background-color:white;border-width:0.413px;border-color:#333847;border-style:solid;height:157.362px;left:922.62px;overflow:clip;top:84.42px;width:92.987px}
-.sc249{position:absolute;display:contents;left:calc(100% - 3.4px);top:-0.41px}
-.sc250{position:absolute;background-color:white;height:55.747px;left:calc(100% - 3.81px);top:0;width:3.815px}
-.sc251{position:absolute;align-content:stretch;display:flex;gap:0.954px;align-items:center;left:-0.41px;padding-left:3.815px;padding-right:3.815px;top:-0.41px;width:92.987px}
-.sc252{background-color:#e8eeef;height:157.362px;position:relative;flex-shrink:0;width:6.238px}
-.sc253{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:16px;width:786px}
-.sc254{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:760px}
-.sc255{align-content:stretch;display:flex;align-items:flex-start;position:relative;flex-shrink:0}
-.sc256{height:465px;position:relative;flex-shrink:0;width:1190px}
-.sc257{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.sc258{position:absolute;height:100.11%;left:0;max-width:none;top:-0.06%;width:100%}
-.sc259{align-content:stretch;display:flex;gap:32px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
-.sc260{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:16px;width:579px}
-.sc261{align-content:stretch;display:flex;align-items:flex-start;overflow:clip;padding-left:20px;padding-top:4px;padding-bottom:4px;position:relative;flex-shrink:0}
-.sc262{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:0px;letter-spacing:-0.48px;width:1088px}
-.sc263{font-family:"Inter",sans-serif;font-weight:700;font-weight:700;line-height:1.5;font-size:24px}
-.sc264{line-height:1.5;font-size:24px}
-.sc265{position:absolute;height:43.5px;left:163.5px;top:7941px;width:0}
-.sc266{position:absolute;inset:0 -2.5px}
-.sc267{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:200px;align-items:flex-start;left:161px;overflow:clip;top:8342px}
-.sc268{align-content:stretch;display:flex;flex-direction:column;gap:100px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
-.sc269{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;height:72px;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:579px}
-.sc270{height:465.5px;position:relative;flex-shrink:0;width:579px}
-.sc271{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;height:72px;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:579px}
-.sc272{height:377px;position:relative;flex-shrink:0;width:1190px}
-.sc273{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:16px;width:1190px}
-.sc274{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:340px}
-.sc275{height:645.5px;position:relative;flex-shrink:0;width:786px}
-.sc276{height:606px;position:relative;flex-shrink:0;width:786px}
-.sc277{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:16px;letter-spacing:-0.32px;width:914px}
-.sc278{align-content:stretch;display:flex;flex-direction:column;height:479.02px;align-items:flex-start;justify-content:space-between;overflow:clip;position:relative;flex-shrink:0}
-.sc279{height:446.5px;position:relative;flex-shrink:0;width:579px}
-.sc280{height:543px;overflow:clip;position:relative;flex-shrink:0;width:1190px}
-.sc281{position:absolute;height:543px;left:0;top:0.3px;width:1190px}
-.sc282{position:absolute;height:123.29%;left:-0.01%;max-width:none;top:-0.06%;width:100.01%}
-.sc283{position:absolute;height:550px;left:161px;top:3279px;width:1190px}
-.sc284{word-break:break-word;position:absolute;display:contents;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.51;left:724px;font-style:normal;color:#111;font-size:16px;text-align:center;top:14074px}
-.sc285{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;left:766px;top:14074px;white-space:pre}
-.sc286{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;left:728px;top:14074px;white-space:nowrap}
-@font-face{font-family:"HarmonyOS Sans SC";font-weight:300;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Light-subset.ttf")}
-@font-face{font-family:"HarmonyOS Sans SC";font-weight:400;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Regular-subset.ttf")}
-@font-face{font-family:"HarmonyOS Sans SC";font-weight:500;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Medium-subset.ttf")}
-@font-face{font-family:"HarmonyOS Sans SC";font-weight:700;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Bold-subset.ttf")}
-@font-face{font-family:Inter;src:url(assets/soundcore/fonts/Inter.ttf);font-weight:100 900}@font-face{font-family:"JetBrains Mono";src:url(assets/soundcore/fonts/JetBrainsMono.ttf);font-weight:100 800}.soundcore-main>.canvas-shell{margin-top:-128px}.soundcore-main p{margin:0}.design-canvas>[data-node-id]{background:transparent!important}
+.sc38{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:20px;width:1190px;white-space:pre-wrap}
+.sc39{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;gap:12px;align-items:flex-start;line-height:0;font-style:normal;overflow:clip;position:relative;flex-shrink:0;color:#333847;font-size:0px;letter-spacing:-0.4px;width:1190px}
+.sc40{position:relative;flex-shrink:0;width:100%}
+.sc41{font-family:"Inter",sans-serif;font-weight:700;font-weight:700;line-height:1.5;font-size:20px}
+.sc42{line-height:1.5;font-size:20px}
+.sc43{align-content:stretch;display:flex;flex-direction:column;align-items:flex-start;overflow:clip;padding-top:24px;position:relative;flex-shrink:0}
+.sc44{align-content:stretch;display:flex;flex-direction:column;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
+.sc45{height:956.25px;overflow:clip;position:relative;flex-shrink:0;width:1190px}
+.sc46{position:absolute;display:contents;left:-510px;top:0}
+.sc47{position:absolute;background-color:#fff;height:956.25px;left:-510px;overflow:clip;top:0;width:1700px}
+.sc48{position:absolute;background-color:white;height:956.25px;left:0;top:0;width:1700px}
+.sc49{position:absolute;display:flex;height:956.25px;align-items:center;justify-content:center;right:0;top:0;width:1190.885px}
+.sc50{scale:1 -1;flex:none;rotate:180deg}
+.sc51{background-color:#f2f5fa;height:956.25px;position:relative;width:1190.885px}
+.sc52{position:absolute;display:contents;inset:47.52% 45.45% 49.86% 40.91%}
+.sc53{position:absolute;inset:47.52% 46.17% 49.86% 45.08%}
+.sc54{position:absolute;display:block;inset:0;max-width:none;width:100%;height:100%}
+.sc55{position:absolute;display:contents;inset:48.21% 45.45% 49.86% 40.91%}
+.sc56{position:absolute;inset:48.21% 45.45% 49.86% 40.91%}
+.sc57{position:absolute;inset:-1.67% 0}
+.sc58{position:absolute;display:flex;inset:48.21% 58.01% 49.86% 40.91%;align-items:center;justify-content:center}
+.sc59{flex:none;height:100cqw;rotate:90deg;width:100cqh}
+.sc60{position:relative;width:100%;height:100%}
+.sc61{position:absolute;display:contents;inset:78.5% 48.18% 19.56% 40.91%}
+.sc62{position:absolute;inset:78.5% 48.18% 19.56% 40.91%}
+.sc63{position:absolute;display:flex;inset:78.51% 58.01% 19.56% 40.91%;align-items:center;justify-content:center}
+.sc64{position:absolute;display:contents;inset:53.63% 40.91% 42.91% 40.91%}
+.sc65{position:absolute;inset:53.63% 43.35% 42.91% 45.08%}
+.sc66{position:absolute;display:contents;inset:54.51% 40.91% 42.91% 40.91%}
+.sc67{position:absolute;inset:54.51% 40.91% 42.91% 40.91%}
+.sc68{position:absolute;inset:-1.25% 0 -1.26% 0}
+.sc69{position:absolute;display:flex;inset:54.52% 57.65% 42.91% 40.91%;align-items:center;justify-content:center}
+.sc70{position:absolute;display:contents;inset:85.25% 44.63% 13.46% 40.91%}
+.sc71{position:absolute;inset:85.25% 44.63% 13.46% 40.91%}
+.sc72{position:absolute;inset:-2.51% 0}
+.sc73{position:absolute;display:flex;inset:85.25% 58.37% 13.46% 40.91%;align-items:center;justify-content:center}
+.sc74{position:absolute;display:contents;inset:60.58% 36.56% 35.09% 40.71%}
+.sc75{position:absolute;inset:60.58% 40.43% 35.09% 45.08%}
+.sc76{position:absolute;display:contents;inset:61.69% 36.56% 35.09% 40.71%}
+.sc77{position:absolute;inset:61.69% 36.56% 35.09% 40.71%}
+.sc78{position:absolute;inset:-1.43% 0}
+.sc79{position:absolute;display:flex;inset:61.7% 57.48% 35.09% 40.71%;align-items:center;justify-content:center}
+.sc80{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;left:637.84px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:254.11px;width:450.333px}
+.sc81{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;height:23.817px;line-height:1.5;left:637.84px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:394.9px;width:353.184px}
+.sc82{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;height:23.817px;line-height:1.5;left:637.84px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:692.54px;width:353.184px}
+.sc83{position:absolute;display:contents;left:1155.56px;top:298.47px}
+.sc84{position:absolute;height:554.91px;left:1179.24px;overflow:clip;top:298.47px;width:392.035px}
+.sc85{position:absolute;inset:0 0 0 0.01%}
+.sc86{position:absolute;display:flex;inset:0 93.73% 95.57% 0;align-items:center;justify-content:center}
+.sc87{position:absolute;display:flex;inset:95.57% 0 0 93.73%;align-items:center;justify-content:center}
+.sc88{position:absolute;display:flex;inset:0 0 95.57% 93.73%;align-items:center;justify-content:center}
+.sc89{position:absolute;display:flex;inset:95.57% 93.73% 0 0;align-items:center;justify-content:center}
+.sc90{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:1.56% 95.11% 96.6% 1.42%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
+.sc91{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:96.98% 95.11% 1.18% 1.42%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
+.sc92{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:1.56% 1.4% 96.6% 95.13%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
+.sc93{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:500;inset:96.98% 1.46% 1.18% 95.07%;line-height:normal;font-style:normal;font-size:6.571px;color:color:var(--neutral/white,white);text-align:center}
+.sc94{position:absolute;inset:-0.05% 5.97% 0.04% 6.36%}
+.sc95{position:absolute;inset:31.21% 30.86% 66.21% 68.75%}
+.sc96{position:absolute;inset:-1.8% 0 -1.8% -6.68%}
+.sc97{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:23.783px;line-height:21.25px;left:1155.56px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);top:299.31px;width:9.469px}
+.sc98{position:absolute;display:contents;left:638.57px;top:460.81px}
+.sc99{position:absolute;inset:48.19% 59.43% 49.83% 40.18%}
+.sc100{position:absolute;inset:-2.34% 0 -2.34% -6.68%}
+.sc101{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:460.81px;width:42.613px}
+.sc102{position:absolute;display:contents;left:638.57px;top:750.52px}
+.sc103{position:absolute;inset:78.49% 59.43% 19.53% 40.18%}
+.sc104{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:750.52px;width:42.613px}
+.sc105{position:absolute;display:contents;left:638.57px;top:521.26px}
+.sc106{position:absolute;inset:54.51% 59.43% 42.91% 40.18%}
+.sc107{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:524.23px;width:42.613px}
+.sc108{position:absolute;display:contents;left:638.57px;top:810.13px}
+.sc109{position:absolute;inset:85.25% 59.43% 13.46% 40.18%}
+.sc110{position:absolute;inset:-3.6% 0 -3.6% -6.68%}
+.sc111{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:810.13px;width:42.613px}
+.sc112{position:absolute;display:contents;left:638.57px;top:590.09px}
+.sc113{position:absolute;inset:61.71% 59.43% 35.12% 40.18%}
+.sc114{position:absolute;inset:-1.46% 0 -1.46% -6.68%}
+.sc115{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:18.669px;line-height:21.25px;left:659.88px;font-style:normal;font-size:14.167px;color:color:var(--neutral/gray-6,#333847);text-align:center;top:595.91px;width:42.613px}
+.sc116{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;height:18.434px;left:calc(50% - 52.13px);top:750.75px;width:63.122px}
+.sc117{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;height:12.296px;left:calc(50% - 14.56px);top:815.21px;width:138.268px}
+.sc118{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;bottom:0;align-content:stretch;display:flex;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;align-items:center;justify-content:space-between;left:50%;font-style:normal;padding-left:84.115px;padding-right:44.271px;padding-top:39.844px;padding-bottom:39.844px;font-size:12.396px;color:color:var(--neutral/gray-4,#8d9bb1);width:1700px;white-space:nowrap}
+.sc119{line-height:1.5;position:relative;flex-shrink:0;text-align:justify}
+.sc120{display:flex;flex-direction:column;justify-content:center;line-height:0;opacity:0.0;position:relative;flex-shrink:0;text-align:right}
+.sc121{position:absolute;inset:33.79% 20.43% 63.59% 70.81%}
+.sc122{position:absolute;inset:84.74% 9.02% 13.33% 87.27%}
+.sc123{position:absolute;inset:39.67% 17.62% 56.87% 70.81%}
+.sc124{position:absolute;inset:46.32% 14.69% 49.35% 70.81%}
+.sc125{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:35.417px;height:857.969px;align-items:flex-start;left:0;padding-top:123.958px;padding-left:84.115px;padding-right:84.115px;top:0;width:509.115px}
+.sc126{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:500;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:31.875px;color:color:var(--neutral/black,#080a0f);width:100%}
+.sc127{align-content:stretch;display:flex;flex-direction:column;align-items:flex-start;position:relative;flex-shrink:0;width:100%}
+.sc128{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:15.938px;color:color:var(--neutral/gray-6,#333847);width:100%}
+.sc129{position:absolute;align-content:stretch;display:flex;align-items:center;left:0;padding-left:84.115px;padding-right:84.115px;padding-top:39.844px;padding-bottom:39.844px;top:0;width:1700px}
+.sc130{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:12.396px;color:color:var(--neutral/gray-4,#8d9bb1);white-space:nowrap}
+.sc131{position:absolute;display:contents;left:638.85px;top:157.65px}
+.sc132{position:absolute;inset:16.49% 8.33% 79.63% 40.88%}
+.sc133{position:absolute;display:contents;left:638.85px;top:166.62px}
+.sc134{position:absolute;background-color:#cff1fd;left:638.85px;width:19.373px;height:19.373px;top:166.62px}
+.sc135{position:absolute;inset:17.42% 7.57% 82.58% 37.58%}
+.sc136{position:absolute;inset:-0.31px 0}
+.sc137{position:absolute;inset:19.45% 7.57% 80.55% 37.58%}
+.sc138{word-break:break-word;position:absolute;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:19.534px;line-height:21.25px;left:644.77px;font-style:normal;font-size:10.625px;color:color:var(--neutral/gray-6,#333847);top:166.45px;width:8.056px}
+.sc139{align-content:stretch;display:flex;gap:64px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
+.sc140{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:0px;letter-spacing:-0.4px;width:340px}
+.sc141{align-content:stretch;display:flex;flex-direction:column;gap:14px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
+.sc142{height:631.607px;overflow:clip;position:relative;flex-shrink:0;width:786px}
+.sc143{position:absolute;background-color:white;height:631.607px;left:-336.86px;overflow:clip;top:0;width:1122.857px}
+.sc144{position:absolute;background-color:white;height:631.607px;left:0;top:0;width:1122.857px}
+.sc145{position:absolute;display:flex;height:631.607px;align-items:center;justify-content:center;right:0;top:0;width:786.585px}
+.sc146{background-color:#f2f5fa;height:631.607px;position:relative;width:786.585px}
+.sc147{--tx:-50%;translate:var(--tx,0) var(--ty,0);word-break:break-word;position:absolute;bottom:0;align-content:stretch;display:flex;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;align-items:center;justify-content:space-between;left:50%;font-style:normal;padding-left:55.558px;padding-right:29.241px;padding-top:26.317px;padding-bottom:26.317px;font-size:8.188px;color:color:var(--neutral/gray-4,#8d9bb1);width:1122.857px;white-space:nowrap}
+.sc148{word-break:break-word;position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:23.393px;height:566.692px;align-items:flex-start;left:0;font-style:normal;padding-top:81.875px;padding-left:55.558px;padding-right:55.558px;top:0;width:336.272px}
+.sc149{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:500;line-height:1.5;position:relative;flex-shrink:0;font-size:21.054px;color:color:var(--neutral/black,#080a0f);width:100%}
+.sc150{align-content:stretch;display:flex;flex-direction:column;gap:5.848px;align-items:flex-start;position:relative;flex-shrink:0;font-size:10.527px;color:color:var(--neutral/gray-6,#333847);width:100%}
+.sc151{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;position:relative;flex-shrink:0;width:100%}
+.sc152{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;height:353.147px;line-height:0;position:relative;flex-shrink:0;width:100%}
+.sc153{margin-bottom:0}
+.sc154{list-style-type:disc;margin-inline-start:15.790499999999998px}
+.sc155{line-height:1.5;margin-bottom:0;white-space:pre-wrap}
+.sc156{font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;margin-bottom:0;white-space:pre-wrap}
+.sc157{list-style-type:disc;margin-bottom:0}
+.sc158{margin-bottom:0;margin-inline-start:15.790499999999998px}
+.sc159{margin-inline-start:15.790499999999998px}
+.sc160{white-space:pre-wrap}
+.sc161{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:700;line-height:1.5;font-style:normal}
+.sc162{position:absolute;align-content:stretch;display:flex;align-items:center;left:0;padding-left:55.558px;padding-right:55.558px;padding-top:26.317px;padding-bottom:26.317px;top:0;width:1122.857px}
+.sc163{word-break:break-word;font-family:"HarmonyOS Sans SC",sans-serif;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;font-size:8.188px;color:color:var(--neutral/gray-4,#8d9bb1);white-space:nowrap}
+.sc164{position:absolute;display:contents;left:419.95px;top:337.9px}
+.sc165{position:absolute;display:contents;left:419.95px;top:345.05px}
+.sc166{position:absolute;align-content:stretch;display:flex;flex-direction:column;height:221.647px;align-items:flex-start;justify-content:space-between;left:419.95px;top:345.05px;width:457.594px}
+.sc167{position:absolute;inset:0;pointer-events:none}
+.sc168{position:absolute;background-color:white;inset:0}
+.sc169{position:absolute;inset:0;overflow:hidden}
+.sc170{position:absolute;height:100%;left:-0.75%;max-width:none;top:0;width:110.54%}
+.sc171{position:absolute;inset:0;mix-blend-mode:screen}
+.sc172{align-content:stretch;display:flex;flex-direction:column;gap:3.813px;align-items:flex-end;line-height:0;padding-bottom:3.813px;padding-top:5.72px;padding-left:30.506px;padding-right:30.506px;position:relative;flex-shrink:0;width:457.594px}
+.sc173{grid-template-columns:max-content;grid-template-rows:max-content;display:inline-grid;place-items:start;position:relative;flex-shrink:0}
+.sc174{grid-column:1;grid-template-columns:max-content;grid-template-rows:max-content;display:inline-grid;margin-left:360.36px;margin-top:0;place-items:start;position:relative;grid-row:1}
+.sc175{grid-column:1;margin-left:0;margin-top:0;position:relative;grid-row:1;width:4.767px;height:4.767px}
+.sc176{grid-column:1;align-content:stretch;display:flex;gap:5.72px;align-items:center;margin-left:10.49px;margin-top:0;position:relative;grid-row:1}
+.sc177{position:relative;flex-shrink:0;width:4.767px;height:4.767px}
+.sc178{grid-column:1;height:4.767px;margin-left:0;margin-top:0;position:relative;grid-row:1;width:87.705px}
+.sc179{position:absolute;display:flex;height:3.813px;align-items:center;justify-content:center;left:30.98px;top:0.48px;width:0}
+.sc180{flex:none;rotate:90deg}
+.sc181{height:0;position:relative;width:3.813px}
+.sc182{position:absolute;inset:-0.25px 0 0 0}
+.sc183{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:600;line-height:5.72px;left:33.84px;font-style:normal;color:#1d1d1f;font-size:3.813px;top:-0.24px;white-space:nowrap}
+.sc184{position:absolute;height:4.767px;left:0;top:-0.95px;width:28.039px}
+.sc185{position:absolute;inset:0 0 -0.01% 0}
+.sc186{word-break:break-word;align-content:stretch;display:flex;font-family:"Mont For Anker",sans-serif;font-weight:600;align-items:center;justify-content:space-between;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.337px;letter-spacing:-0.0667px;width:100%;white-space:nowrap}
+.sc187{align-content:stretch;display:flex;gap:5.72px;align-items:flex-start;position:relative;flex-shrink:0}
+.sc188{display:flex;flex-direction:column;justify-content:center;position:relative;flex-shrink:0}
+.sc189{line-height:1.4}
+.sc190{display:flex;flex-direction:column;justify-content:center;position:relative;flex-shrink:0;text-align:center}
+.sc191{align-content:stretch;display:flex;gap:5.72px;align-items:center;position:relative;flex-shrink:0;text-align:center}
+.sc192{align-content:stretch;display:flex;flex:1 0 0;flex-direction:column;gap:7.627px;align-items:flex-start;justify-content:center;min-height:1px;padding-left:30.506px;padding-right:30.506px;position:relative;width:100%}
+.sc193{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;gap:3.813px;align-items:flex-start;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;width:163.494px}
+.sc194{line-height:1;position:relative;flex-shrink:0;font-size:15.253px;letter-spacing:-0.6101px;width:100%}
+.sc195{line-height:1.4;position:relative;flex-shrink:0;font-size:4.29px;letter-spacing:-0.0858px;width:100%}
+.sc196{align-content:stretch;display:flex;gap:3.813px;align-items:center;position:relative;flex-shrink:0}
+.sc197{border-color:#1d1d1f;border-width:0.381px;border-style:solid;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:3.337px;padding-top:3.575px;padding-left:6.673px;padding-right:6.673px;position:relative;border-radius:5.72px;flex-shrink:0}
+.sc198{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.813px;text-align:center;letter-spacing:-0.1525px;white-space:nowrap}
+.sc199{line-height:1.2}
+.sc200{background-color:#1d1d1f;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:3.337px;padding-top:3.575px;padding-left:6.673px;padding-right:6.673px;position:relative;border-radius:5.72px;flex-shrink:0}
+.sc201{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;font-size:3.813px;text-align:center;color:#fff;letter-spacing:-0.1525px;white-space:nowrap}
+.sc202{align-content:stretch;display:flex;gap:2.86px;align-items:center;padding-bottom:5.72px;padding-left:30.506px;padding-right:30.506px;position:relative;flex-shrink:0;width:100%}
+.sc203{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.337px;letter-spacing:-0.0667px;white-space:nowrap}
+.sc204{line-height:1.4;margin-bottom:0}
+.sc205{background-color:#1d1d1f;height:8.103px;position:relative;flex-shrink:0;width:0.238px}
+.sc206{position:absolute;background-color:black;height:7.15px;left:419.95px;top:337.9px;width:457.594px}
+.sc207{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;height:2.383px;left:calc(50% + 295.55px);top:340.28px;width:26.802px}
+.sc208{position:absolute;display:contents;left:922.95px;top:337.9px}
+.sc209{position:absolute;height:7.153px;left:922.95px;top:337.9px;width:92.987px}
+.sc210{position:absolute;display:contents;left:922.95px;top:345.05px}
+.sc211{position:absolute;height:157.362px;left:922.95px;top:345.05px;width:92.987px}
+.sc212{position:absolute;height:100%;left:-89.92%;max-width:none;top:0;width:208.28%}
+.sc213{position:absolute;background-image:linear-gradient(to bottom,var(--gradient-from),var(--gradient-to));--gradient-from:80.303%;--gradient-from:rgba(234,232,229,0);inset:0;--gradient-to:#eae8e5}
+.sc214{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:5.722px;height:106.1px;align-items:flex-start;left:0;padding-left:3.815px;padding-right:3.815px;top:23.84px;width:92.987px}
+.sc215{word-break:break-word;align-content:stretch;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;gap:0.954px;align-items:flex-start;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;width:100%}
+.sc216{line-height:1;min-width:100%;position:relative;flex-shrink:0;font-size:9.537px;letter-spacing:-0.3815px;width:min-content}
+.sc217{line-height:1.4;position:relative;flex-shrink:0;font-size:3.338px;letter-spacing:-0.0668px;width:81.542px}
+.sc218{align-content:stretch;display:flex;gap:2.861px;align-items:center;position:relative;flex-shrink:0}
+.sc219{border-color:#1d1d1f;border-width:0.381px;border-style:solid;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:2.384px;padding-top:2.623px;padding-left:4.769px;padding-right:4.769px;position:relative;border-radius:4.53px;flex-shrink:0}
+.sc220{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#1d1d1f;font-size:3.338px;text-align:center;letter-spacing:-0.1335px;white-space:nowrap}
+.sc221{background-color:#1d1d1f;align-content:stretch;display:flex;align-items:center;justify-content:center;padding-bottom:2.384px;padding-top:2.623px;padding-left:4.769px;padding-right:4.769px;position:relative;border-radius:4.53px;flex-shrink:0}
+.sc222{word-break:break-word;display:flex;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;font-style:normal;position:relative;flex-shrink:0;font-size:3.338px;text-align:center;color:#fff;letter-spacing:-0.1335px;white-space:nowrap}
+.sc223{position:absolute;align-content:stretch;display:flex;gap:1.907px;height:15.975px;align-items:center;left:0;padding-bottom:3.815px;padding-left:3.815px;padding-right:3.815px;top:141.39px;width:92.987px}
+.sc224{word-break:break-word;display:flex;flex:1 0 0;flex-direction:column;font-family:"Mont For Anker",sans-serif;font-weight:600;justify-content:center;line-height:0;min-width:1px;font-style:normal;position:relative;color:#1d1d1f;font-size:2.861px;letter-spacing:-0.0572px}
+.sc225{background-color:#1d1d1f;height:8.107px;position:relative;flex-shrink:0;width:0.238px}
+.sc226{position:absolute;display:contents;left:3.81px;top:3.82px}
+.sc227{position:absolute;height:4.769px;left:67.24px;top:3.82px;width:21.935px}
+.sc228{position:absolute;left:0;width:4.769px;height:4.769px;top:0}
+.sc229{position:absolute;left:8.58px;width:4.769px;height:4.769px;top:0}
+.sc230{position:absolute;left:17.17px;width:4.769px;height:4.769px;top:0}
+.sc231{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:0.715px;inset:20% 10%;align-items:flex-start}
+.sc232{background-color:#1d1d1f;height:0.477px;position:relative;border-radius:6.159px;flex-shrink:0;width:100%}
+.sc233{position:absolute;display:flex;height:2.655px;align-items:center;justify-content:center;left:25.39px;top:4.81px;width:0}
+.sc234{height:0;position:relative;width:2.655px}
+.sc235{word-break:break-word;position:absolute;font-family:"Mont For Anker",sans-serif;font-weight:600;height:3.983px;line-height:4.292px;left:27.38px;font-style:normal;color:#1d1d1f;font-size:2.623px;top:4.31px;width:27.218px}
+.sc236{position:absolute;height:3.319px;left:3.81px;top:3.82px;width:19.525px}
+.sc237{position:absolute;inset:0 0 0.01% 0}
+.sc238{position:absolute;background-color:white;border-width:0.35px;border-color:#000;border-style:solid;height:222.232px;left:420px;overflow:clip;top:84.18px;width:457.33px}
+.sc239{position:absolute;display:contents;left:calc(100% - 30.14px);top:-0.35px}
+.sc240{position:absolute;background-color:white;height:274.179px;left:calc(100% - 30.49px);top:0;width:30.489px}
+.sc241{position:absolute;display:contents;left:-0.35px;top:-0.35px}
+.sc242{position:absolute;background-color:white;height:274.179px;left:0;top:0;width:30.489px}
+.sc243{position:absolute;align-content:stretch;display:flex;height:254.898px;align-items:center;left:-0.35px;padding-left:30.489px;padding-right:30.489px;top:-0.35px;width:457.33px}
+.sc244{background-color:#e8eeef;height:254.898px;position:relative;flex-shrink:0;width:25.796px}
+.sc245{height:254.898px;position:relative;flex-shrink:0;width:7.87px}
+.sc246{position:absolute;background-color:#fff;inset:0.09% 0 -0.09% 0}
+.sc247{height:254.898px;position:relative;flex-shrink:0;width:7.433px}
+.sc248{background-color:#e8eeef;height:254.898px;position:relative;flex-shrink:0;width:26.233px}
+.sc249{position:absolute;background-color:white;border-width:0.413px;border-color:#333847;border-style:solid;height:157.362px;left:922.62px;overflow:clip;top:84.42px;width:92.987px}
+.sc250{position:absolute;display:contents;left:calc(100% - 3.4px);top:-0.41px}
+.sc251{position:absolute;background-color:white;height:55.747px;left:calc(100% - 3.81px);top:0;width:3.815px}
+.sc252{position:absolute;align-content:stretch;display:flex;gap:0.954px;align-items:center;left:-0.41px;padding-left:3.815px;padding-right:3.815px;top:-0.41px;width:92.987px}
+.sc253{background-color:#e8eeef;height:157.362px;position:relative;flex-shrink:0;width:6.238px}
+.sc254{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:16px;width:786px}
+.sc255{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:0px;letter-spacing:-0.4px;width:913px}
+.sc256{align-content:stretch;display:flex;align-items:flex-start;position:relative;flex-shrink:0}
+.sc257{height:465px;position:relative;flex-shrink:0;width:1190px}
+.sc258{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sc259{position:absolute;height:100.11%;left:0;max-width:none;top:-0.06%;width:100%}
+.sc260{align-content:stretch;display:flex;gap:32px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
+.sc261{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:20px;width:579px}
+.sc262{position:absolute;display:contents;left:161px;top:7941px}
+.sc263{position:absolute;align-content:stretch;display:flex;align-items:flex-start;left:161px;overflow:clip;padding-left:20px;padding-top:4px;padding-bottom:4px;top:7941px}
+.sc264{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:0px;letter-spacing:-0.48px;width:1088px}
+.sc265{font-family:"Inter",sans-serif;font-weight:700;font-weight:700;line-height:1.5;font-size:24px}
+.sc266{line-height:1.5;font-size:24px}
+.sc267{position:absolute;height:43.5px;left:163.5px;top:7941px;width:0}
+.sc268{position:absolute;inset:0 -2.5px}
+.sc269{position:absolute;align-content:stretch;display:flex;flex-direction:column;gap:200px;align-items:flex-start;left:161px;overflow:clip;top:8342px}
+.sc270{align-content:stretch;display:flex;flex-direction:column;gap:100px;align-items:flex-start;overflow:clip;position:relative;flex-shrink:0}
+.sc271{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;height:59px;line-height:0;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:0px;letter-spacing:-0.4px;width:579px}
+.sc272{height:465.5px;position:relative;flex-shrink:0;width:579px}
+.sc273{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;height:63px;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:20px;letter-spacing:-0.4px;width:579px}
+.sc274{height:377px;position:relative;flex-shrink:0;width:1190px}
+.sc275{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:20px;width:1190px}
+.sc276{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:20px;letter-spacing:-0.4px;width:340px}
+.sc277{height:645.5px;position:relative;flex-shrink:0;width:786px}
+.sc278{height:606px;position:relative;flex-shrink:0;width:786px}
+.sc279{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:normal;font-style:normal;position:relative;flex-shrink:0;color:#808080;font-size:20px;width:786px}
+.sc280{word-break:break-word;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.5;font-style:normal;position:relative;flex-shrink:0;color:#333847;font-size:20px;letter-spacing:-0.4px;width:1091px}
+.sc281{align-content:stretch;display:flex;flex-direction:column;height:479.02px;align-items:flex-start;justify-content:space-between;overflow:clip;position:relative;flex-shrink:0}
+.sc282{height:446.5px;position:relative;flex-shrink:0;width:579px}
+.sc283{height:543px;overflow:clip;position:relative;flex-shrink:0;width:1190px}
+.sc284{position:absolute;height:543px;left:0;top:0.3px;width:1190px}
+.sc285{position:absolute;height:123.29%;left:-0.01%;max-width:none;top:-0.06%;width:100.01%}
+.sc286{position:absolute;height:550px;left:161px;top:3279px;width:1190px}
+.sc287{word-break:break-word;position:absolute;display:contents;font-family:"Inter",sans-serif;font-weight:400;font-weight:400;line-height:1.51;left:724px;font-style:normal;color:#111;font-size:16px;text-align:center;top:14074px}
+.sc288{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;left:766px;top:14074px;white-space:pre}
+.sc289{--tx:-50%;translate:var(--tx,0) var(--ty,0);position:absolute;left:728px;top:14074px;white-space:nowrap}
+
+@font-face{font-family:"HarmonyOS Sans SC";font-weight:300;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Light-subset.ttf")}@font-face{font-family:"HarmonyOS Sans SC";font-weight:400;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Regular-subset.ttf")}@font-face{font-family:"HarmonyOS Sans SC";font-weight:500;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Medium-subset.ttf")}@font-face{font-family:"HarmonyOS Sans SC";font-weight:700;src:url("assets/soundcore/fonts/HarmonyOS_Sans_SC_Bold-subset.ttf")}@font-face{font-family:Inter;src:url(assets/soundcore/fonts/Inter.ttf);font-weight:100 900}@font-face{font-family:"JetBrains Mono";src:url(assets/soundcore/fonts/JetBrainsMono.ttf);font-weight:100 800}
+.soundcore-main>.canvas-shell{margin-top:-128px}.soundcore-main p{margin:0}.design-canvas>[data-node-id]{background:transparent!important}
