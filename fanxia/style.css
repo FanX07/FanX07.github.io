@@ -50,3 +50,26 @@ body{background-size:12.727922px 12.727922px}#pudding-pet{width:28px;height:28px
 #project-9 .identity strong{font-size:18px;line-height:1.12}#project-9 .back>p{font-size:11px;line-height:16px}#project-9 .back h3{font-size:20px}
 
 .work-gallery-frame{position:relative}.work-page-arrow{position:absolute;z-index:15;top:52%;width:36px;height:36px;padding:0;display:grid;place-items:center;border:1px solid #dedde0;border-radius:50%;background:#fffffff2;color:#343438;cursor:pointer;transition:background .2s,opacity .2s}.work-page-arrow.previous{left:4px}.work-page-arrow.next{right:4px}.work-page-arrow:hover:not(:disabled){background:#f0eff1}.work-page-arrow:disabled{opacity:.25;cursor:default}.work-page-arrow[hidden]{display:none}@media(max-width:700px){.work-page-arrow.previous{left:8px}.work-page-arrow.next{right:8px}}
+
+/* Phone layout: one hanging card at a time, swiped sideways and centred. */
+@media(max-width:700px){
+.work{margin-top:88px;padding-top:0}.work-heading{padding-top:0}
+.work-filters{flex-wrap:wrap;justify-content:center;gap:8px;margin:22px auto 0;padding:0;width:calc(100% - 32px);max-width:420px}
+.work-filters button{flex:none;white-space:nowrap;font-size:12px;line-height:1.2;padding:8px 15px}
+.cards-scroll{margin-top:22px;scroll-snap-type:x mandatory;scroll-padding-inline:0;-webkit-overflow-scrolling:touch}
+.cards-scroll .track,.cards-scroll .track[data-count]{width:max-content;max-width:none;margin:0;gap:24px;justify-content:flex-start;padding:0 calc(50vw - 134px)}
+.cards-scroll .track .rail,.cards-scroll .track[data-count] .rail{left:0;width:100%}
+.cards-scroll .hanger{flex:0 0 268px;scroll-snap-align:center;scroll-snap-stop:always}
+.cards-scroll .card-hit{width:268px}
+.hanger{height:520px}
+.work-page-arrow{top:46%;width:32px;height:32px}
+.work-page-arrow.previous{left:10px}.work-page-arrow.next{right:10px}
+.work-pagination{gap:9px;margin-top:4px}
+.work-pagination button{width:6px;height:6px}
+.footnote{margin:22px 20px 0;align-items:center;text-align:center;gap:4px}
+.contact{padding:72px 0 40px}
+.contact>div{gap:18px;flex-wrap:wrap}
+.dessert-shelf{padding-bottom:64px}
+}
+/* The pudding companion follows a mouse; on touch it would just sit on top of the text. */
+@media(hover:none) and (pointer:coarse){#pudding-pet,#pudding-hat,#mouse-trail{display:none!important}}
