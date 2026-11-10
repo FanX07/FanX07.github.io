@@ -4,3 +4,9 @@ html{scroll-padding-top:70px}body{overflow-x:hidden}main{width:100%;max-width:10
 }
 
 @media(max-width:700px){.work-filters{box-sizing:border-box!important;max-width:360px!important;margin-inline:auto!important}.typing{white-space:nowrap;font-size:18px}.work .work-filters button{letter-spacing:-.2px}}
+
+/* Keep iOS text inflation from breaking scaled Figma artboards. */
+@media(max-width:700px){
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.design-canvas,.design-canvas *{-webkit-text-size-adjust:none!important;text-size-adjust:none!important}
+}
