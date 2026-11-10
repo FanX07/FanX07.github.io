@@ -73,3 +73,6 @@ body{background-size:12.727922px 12.727922px}#pudding-pet{width:28px;height:28px
 }
 /* The pudding companion follows a mouse; on touch it would just sit on top of the text. */
 @media(hover:none) and (pointer:coarse){#pudding-pet,#pudding-hat,#mouse-trail{display:none!important}}
+
+/* A dessert stays gone until a fresh page load. */
+.dessert-shelf figure{position:relative;cursor:pointer}.dessert-shelf figure:before{content:"";position:absolute;inset:-10px}.dessert-shelf figure:focus-visible{outline:1px solid currentColor;outline-offset:5px;border-radius:3px}.dessert-shelf figure[data-eaten]{visibility:hidden;pointer-events:none;animation:dessert-eaten .35s ease-out both}#pudding-pet.eating svg{animation:pudding-chew .16s ease-in-out 4}@keyframes pudding-chew{50%{transform:translateY(2px) scale(1.08,.94)}}@keyframes dessert-eaten{from{visibility:visible;opacity:1;transform:scale(1)}to{visibility:hidden;opacity:0;transform:scale(.15)}}@media(hover:none) and (pointer:coarse){#pudding-pet.pet-active{display:block!important}body:has(#pudding-pet.pet-active) #pudding-hat.visible{display:block!important}}@media(prefers-reduced-motion:reduce){#pudding-pet.eating svg,.dessert-shelf figure[data-eaten]{animation:none}}
