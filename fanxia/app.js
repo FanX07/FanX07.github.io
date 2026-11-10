@@ -1,5 +1,5 @@
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const typed=document.querySelector('#typed'), words=['Designer of products','Designer of interactions','Designer of AI experiences'];let word=0,pos=words[0].length,deleting=true;
+const typed=document.querySelector('#typed'), words=['products','interactions','AI experiences'];let word=0,pos=words[0].length,deleting=true;
 function type(){let text=words[word];typed.textContent=text.slice(0,pos);if(deleting){pos--;if(pos<0){deleting=false;word=(word+1)%words.length;pos=0;setTimeout(type,350);return}}else{pos++;if(pos>text.length){deleting=true;setTimeout(type,2000);return}}setTimeout(type,deleting?42:85)}if(!reduced)setTimeout(type,2200);
 const quotes=['Start with curiosity. Keep making.','Make the complex feel simple.','A little care goes a long way.'];let q=0;document.querySelector('#inspiration').addEventListener('click',()=>{const el=document.querySelector('#quote');el.hidden=false;el.textContent=quotes[q++%quotes.length]});
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('arrived');observer.unobserve(e.target)}}),{threshold:.12});
