@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="15.8965" height="15.8965" viewBox="0 0 15.8965 15.8965" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Frame">
+<g id="Vector">
+<use xlink:href="#stroke0_0_256" fill="black"/>
+<mask id="stroke1_0_256" maskUnits="userSpaceOnUse" x="-0.0077042" y="-0.00664943" width="16" height="16" fill="black">
+<rect fill="white" x="-0.0077042" y="-0.00664943" width="16" height="16"/>
+<use xlink:href="#stroke0_0_256"/>
+</mask>
+<path d="M11.9211 4.96747V6.95453H8.94053V3.97394H10.9276L7.947 0.993351L4.96641 3.97394H6.95347V6.95453H3.97288V4.96747L0.992296 7.94806L1.98583 8.94159L3.97288 10.9286V8.94159H6.95347V11.9222H4.96641L7.947 14.9028L8.94053 13.9092L10.9276 11.9222H8.94053V8.94159H11.9211V10.9286L14.9017 7.94806L11.9211 4.96747Z" stroke-width="0.662353" stroke="white" mask="url(#stroke1_0_256)"/>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_256" d="M11.9211 4.96747V6.95453H8.94053V3.97394H10.9276L7.947 0.993351L4.96641 3.97394H6.95347V6.95453H3.97288V4.96747L0.992296 7.94806L1.98583 8.94159L3.97288 10.9286V8.94159H6.95347V11.9222H4.96641L7.947 14.9028L8.94053 13.9092L10.9276 11.9222H8.94053V8.94159H11.9211V10.9286L14.9017 7.94806L11.9211 4.96747Z"/>
+</defs>
+</svg>
