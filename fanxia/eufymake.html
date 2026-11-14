@@ -727,7 +727,7 @@ body:not(.op-done) .bookmark-nav,body.op-in .bookmark-nav{opacity:0;pointer-even
 <section class="sec" id="problem">
   <div class="wrap"><h2 class="h1 rv">Problem</h2></div>
   <div class="bleed problem" id="prob"><img src="assets/eufy/v5/bbdcd1dbeee2c36b.webp" alt="">
-    <div class="q" id="probq">As customers began using the product,<br>feedback revealed friction from App printing process.</div>
+    <div class="q" id="probq">Early customer feedback exposed <span style="font-size:1.14em">friction</span><br>in the <span style="font-size:1.14em">2.0</span> app’s <span style="font-size:1.14em">printing</span> flow.</div>
   </div>
 </section>
 
@@ -4897,8 +4897,8 @@ const ICON={
 // relative values only: 2.0 time / error rate = baseline 100
 const M=[
  {ic:&#x27;check&#x27;,lab:&#x27;Core Task Completion Rate&#x27;,chip:&#x27;+29%&#x27;,v2:63,v3:82,fmt:v=&gt;`${Math.round(v)}%`,was:&#x27;63%&#x27;,bar2:63,bar3:82,note2:&#x27;Measured in 2.0 testing.&#x27;,note3:&#x27;Up from 63% in 2.0.&#x27;},
- {ic:&#x27;clock&#x27;,lab:&#x27;Average Task Time&#x27;,v2:100,v3:62,fmt:(v,m)=&gt;m===&#x27;v3&#x27;?`−${Math.round(100-v)}%`:&#x27;Baseline&#x27;,bar2:100,bar3:62,note2:&#x27;2.0 time as the baseline.&#x27;,note3:&#x27;Reduced by 38%.&#x27;},
- {ic:&#x27;alert&#x27;,lab:&#x27;Settings Error Rate&#x27;,v2:100,v3:55,fmt:(v,m)=&gt;m===&#x27;v3&#x27;?`−${Math.round(100-v)}%`:&#x27;Baseline&#x27;,bar2:100,bar3:55,note2:&#x27;2.0 error rate as the baseline.&#x27;,note3:&#x27;Reduced by 45%.&#x27;}];
+ {ic:&#x27;clock&#x27;,lab:&#x27;Average Task Time&#x27;,v2:100,v3:81,fmt:(v,m)=&gt;m===&#x27;v3&#x27;?`−${Math.round(100-v)}%`:&#x27;6.34 min&#x27;,bar2:100,bar3:81,note2:&#x27;Interface exploration time.&#x27;,note3:&#x27;Reduced by 19%.&#x27;},
+ {ic:&#x27;alert&#x27;,lab:&#x27;Settings Error Rate&#x27;,v2:100,v3:78,fmt:(v,m)=&gt;m===&#x27;v3&#x27;?`−${Math.round(100-v)}%`:&#x27;45%&#x27;,bar2:100,bar3:78,note2:&#x27;2.0 error rate as the baseline.&#x27;,note3:&#x27;Reduced by 22%.&#x27;}];
 const cardsEl=$(&#x27;cards&#x27;);
 M.forEach((m,i)=&gt;{const c=document.createElement(&#x27;div&#x27;);c.className=&#x27;card&#x27;;c.style.setProperty(&#x27;--d&#x27;,(i*110)+&#x27;ms&#x27;);
   c.innerHTML=`&lt;div class=&quot;ic&quot;&gt;${ICON[m.ic]}&lt;/div&gt;${m.chip?`&lt;span class=&quot;chip&quot;&gt;${m.chip}&lt;/span&gt;`:&#x27;&#x27;}&lt;div class=&quot;lab&quot;&gt;${m.lab}&lt;/div&gt;
