@@ -286,7 +286,27 @@ body{background:#fff radial-gradient(circle,#b5a99b40 .65px,transparent .8px) 0 
   .case-preview .experience-frame{aspect-ratio:auto;height:calc(100cqw * 854 / 1842 + 250px)}
 }
 </style>
-<style>.case-preview .creative-demo,.case-preview #create~section .media.blk{width:var(--vw,100vw);max-width:none;margin-left:var(--ml,calc(50% - 50vw));margin-right:0}.case-preview .creative-demo .creative-visual{max-width:none}</style><script>(()=>{const f=()=>{const d=document.documentElement,m=document.querySelector(".case-preview");d.style.setProperty("--vw",d.clientWidth+"px");if(m)d.style.setProperty("--ml",(-m.getBoundingClientRect().left)+"px")};f();addEventListener("resize",f);addEventListener("DOMContentLoaded",f)})()</script><style>html,body{overflow-x:clip}</style></head>
+<style>.case-preview .creative-demo,.case-preview #create~section .media.blk{width:var(--vw,100vw);max-width:none;margin-left:var(--ml,calc(50% - 50vw));margin-right:0}.case-preview .creative-demo .creative-visual{max-width:none}</style><script>(()=>{const f=()=>{const d=document.documentElement,m=document.querySelector(".case-preview");d.style.setProperty("--vw",d.clientWidth+"px");if(m)d.style.setProperty("--ml",(-m.getBoundingClientRect().left)+"px")};f();addEventListener("resize",f);addEventListener("DOMContentLoaded",f)})()</script><style>html,body{overflow-x:clip}</style><style id="focused-dark-preview">
+.dark-chapters{position:relative;isolation:isolate;--k:#f4f5f4;--k2:#b8bdbb;--k3:#929896;--line:rgba(255,255,255,.16);--bg:#121515;color:#f4f5f4;padding-bottom:clamp(100px,12vw,180px)}
+.dark-chapters::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;width:100vw;left:50%;transform:translateX(-50%);background:#070909;pointer-events:none}
+.dark-chapters::after{content:"";position:absolute;z-index:-1;top:0;left:50%;width:100vw;height:clamp(50px,7vw,105px);transform:translate(-50%,-99%);background:linear-gradient(to bottom,rgba(7,9,9,0),#070909);pointer-events:none}
+.dark-chapters + #structure{position:relative}
+.dark-chapters + #structure::after{content:"";position:absolute;z-index:-1;left:50%;top:0;width:100vw;height:clamp(65px,8vw,120px);transform:translate(-50%,-99%);background:linear-gradient(to bottom,rgba(7,9,9,0),rgba(255,255,255,.95));pointer-events:none}
+.dark-chapters .p{color:#c2c8c5}.dark-chapters .more{color:#bac2bd}.dark-chapters .more:hover{color:#fff}.dark-chapters .ex-stage{color:#f4f5f4}
+</style>
+<style id="full-bleed-refinement">
+/* The interactive canvas can reach the viewport edge, independently of the text column. */
+.dark-chapters .mod.aligned-demo,.dark-chapters .mod.full,.dark-chapters .problem{width:var(--vw,100vw);max-width:none;margin-left:var(--ml,calc(50% - 50vw));margin-right:0;border-radius:0}
+.dark-chapters .method-frame,.dark-chapters .strategy-frame,.dark-chapters .experience-frame{max-width:none}
+.dark-chapters .experience-frame{aspect-ratio:1842/854}
+.dark-chapters{padding-bottom:clamp(260px,24vw,420px)}
+.dark-chapters::before{background:linear-gradient(to bottom,#070909 0%,#070909 calc(100% - clamp(260px,24vw,420px)),rgba(7,9,9,.98) calc(100% - clamp(230px,21vw,370px)),rgba(7,9,9,.76) calc(100% - clamp(165px,15vw,265px)),rgba(7,9,9,.30) calc(100% - clamp(80px,7vw,125px)),rgba(7,9,9,0) 100%)}
+.dark-chapters::after{height:clamp(140px,15vw,240px);background:linear-gradient(to bottom,rgba(7,9,9,0),rgba(7,9,9,.12) 25%,rgba(7,9,9,.55) 65%,#070909 100%)}
+.dark-chapters + #structure::after{display:none}
+.case-preview .dark-chapters + #structure{padding-top:clamp(35px,5vw,75px)}
+@media(max-width:700px){.dark-chapters .experience-frame{aspect-ratio:auto;height:calc(100vw * 854 / 1842 + 250px)}}
+</style>
+</head>
 <body>
 
 <!-- ================= OPENING: film → fade to black → stage lights up ================= -->
@@ -724,10 +744,10 @@ body:not(.op-done) .bookmark-nav,body.op-in .bookmark-nav{opacity:0;pointer-even
 
 <!-- ================= USERS ================= -->
 <!-- ================= PROBLEM ================= -->
-<section class="sec" id="problem">
+<div class="dark-chapters"><section class="sec" id="problem">
   <div class="wrap"><h2 class="h1 rv">Problem</h2></div>
   <div class="bleed problem" id="prob"><img src="assets/eufy/v5/bbdcd1dbeee2c36b.webp" alt="">
-    <div class="q" id="probq">Early customer feedback exposed <span style="font-size:1.14em">friction</span><br>in the <span style="font-size:1.14em">2.0</span> app’s <span style="font-size:1.14em">printing</span> flow.</div>
+    <div class="q" id="probq">Early customer feedback exposed <span style="font-size:calc(1.14em + 3px)">friction</span><br>in the <span style="font-size:calc(1.14em + 3px)">2.0</span> app’s <span style="font-size:calc(1.14em + 3px)">printing</span> flow.</div>
   </div>
 </section>
 
@@ -3213,17 +3233,17 @@ watchDemoCenter(active=&gt;{if(active&amp;&amp;cur&lt;0)go(0)});
   margin-inline:calc((100% - 100vw)/2);padding:4px var(--exx,24px) 28px;scroll-padding:0 var(--exx,24px);scrollbar-width:none;cursor:grab}
 .exc-track::-webkit-scrollbar{display:none}
 .exc-track.drag{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing}
-.exc-card{flex:0 0 min(78vw,calc(var(--u)*1060));margin:0;scroll-snap-align:start;opacity:0;transform:translateY(24px)}
+.exc-card{flex:0 0 min(102.96vw,calc(var(--u)*1399.2));margin:0;scroll-snap-align:start;opacity:0;transform:translateY(24px)}
 .exc.in .exc-card{opacity:1;transform:none;transition:opacity .8s ease var(--d),transform .9s cubic-bezier(.2,.75,.2,1) var(--d)}
 .exc-card figcaption{font:400 clamp(17px,calc(var(--u)*24),26px)/1.3 var(--body);color:#86868b;margin:0 0 clamp(14px,calc(var(--u)*20),22px)}
-.exc-card figcaption b{font-family:var(--disp);font-weight:600;color:#1d1d1f}
-.exc-img{border-radius:clamp(16px,calc(var(--u)*28),30px);overflow:hidden;aspect-ratio:1842/854;background:#111}
+.exc-card figcaption b{font-family:var(--disp);font-weight:600;color:#f4f4f2}
+.exc-img{position:relative;cursor:pointer;border-radius:clamp(16px,calc(var(--u)*28),30px);overflow:hidden;aspect-ratio:1842/854;background:#111}
 .exc-img img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
 .exc-nav{display:flex;justify-content:flex-end;gap:14px;padding:0 var(--px)}
 .exc-nav button{position:static;width:44px;height:44px;border-radius:50%;background:#e8e8ed;color:#1d1d1f;display:grid;place-items:center;transition:background .2s,opacity .2s}
 .exc-nav button:hover:not(:disabled){background:#dcdce1}.exc-nav button:disabled{opacity:.42;cursor:default}
 .exc-nav svg{width:16px;height:16px}
-</style><div class="exc" id="exc"><div class="exc-track" role="list" aria-label="Experience stages"><figure class="exc-card" style="--d:0ms"><figcaption><b>Stage1: Onboarding</b> <span>Strategy 1 · Substrate First</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/d0caa07934afb0a6.webp" alt="Stage1: Onboarding" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:80ms"><figcaption><b>Stage2: Asset Import &amp; Manage</b> <span>Strategy 1 · Substrate First</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/218f5d0b4df82fd8.webp" alt="Stage2: Asset Import &amp; Manage" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:160ms"><figcaption><b>Stage3: Craft mode Setup</b> <span>Strategy 2 · Next-Led Flow</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/3e8289d04a660411.webp" alt="Stage3: Craft mode Setup" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:240ms"><figcaption><b>Stage4: Print Setup</b> <span>Strategy 2 · Next-Led Flow</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/921d4e6620765445.webp" alt="Stage4: Print Setup" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:240ms"><figcaption><b>Stage5: Printing</b> <span>Strategy 3 · Visible Status</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/4e778b65e7f2410e.webp" alt="Stage5: Printing" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:240ms"><figcaption><b>Stage6: Finish</b> <span>Strategy 4 · Feedback Loop</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/8c1e8609b68476e8.webp" alt="Stage6: Finish" loading="lazy" draggable="false"></div></figure></div><div class="exc-nav"><button class="exc-prev" aria-label="Previous stage"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="exc-next" aria-label="Next stage"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><script>
+</style><div class="exc" id="exc"><div class="exc-track" role="list" aria-label="Experience stages"><figure class="exc-card" style="--d:0ms"><figcaption><b>Stage1: Onboarding</b></figcaption><div class="exc-img"><img src="assets/eufy/v5/d0caa07934afb0a6.webp" alt="Stage1: Onboarding" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:80ms"><figcaption><b>Stage2: Asset Import &amp; Manage</b> <span>Strategy 1 · Substrate First</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/218f5d0b4df82fd8.webp" alt="Stage2: Asset Import &amp; Manage" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:160ms"><figcaption><b>Stage3: Craft mode Setup</b> <span>Strategy 2 · Next-Led Flow</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/3e8289d04a660411.webp" alt="Stage3: Craft mode Setup" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:240ms"><figcaption><b>Stage4: Print Setup</b> <span>Strategy 2 · Next-Led Flow</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/921d4e6620765445.webp" alt="Stage4: Print Setup" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:240ms"><figcaption><b>Stage5: Printing</b> <span>Strategy 3 · Visible Status</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/4e778b65e7f2410e.webp" alt="Stage5: Printing" loading="lazy" draggable="false"></div></figure><figure class="exc-card" style="--d:240ms"><figcaption><b>Stage6: Finish</b> <span>Strategy 4 · Feedback Loop</span></figcaption><div class="exc-img"><img src="assets/eufy/v5/8c1e8609b68476e8.webp" alt="Stage6: Finish" loading="lazy" draggable="false"></div></figure></div><div class="exc-nav"><button class="exc-prev" aria-label="Previous stage"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="exc-next" aria-label="Next stage"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><script>
 (()=>{const box=document.getElementById('exc'),tr=box.querySelector('.exc-track'),pv=box.querySelector('.exc-prev'),nx=box.querySelector('.exc-next');
   const frame=document.querySelector('.experience-frame'),title=document.getElementById('exStage'),wrap=title.parentElement;
   const align=()=>{const x=wrap.getBoundingClientRect().left+parseFloat(getComputedStyle(wrap).paddingLeft)-tr.getBoundingClientRect().left;tr.style.setProperty('--exx',x+'px')};
@@ -3277,6 +3297,7 @@ watchDemoCenter(active=&gt;{if(active&amp;&amp;cur&lt;0)go(0)});
 </script>
 </section>
 
+</div>
 <section class="sec layer" id="structure">
   <div class="wrap"><h3 class="h2 lh rv"><span>03</span> Structure</h3><p class="p rv" style="--d:100ms">Do features appear when needed?</p></div>
   <div class="mod live aligned-demo"><iframe srcdoc="&lt;!DOCTYPE html&gt;
