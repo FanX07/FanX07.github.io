@@ -6,7 +6,7 @@
 @font-face{font-family:Inter;src:url(assets/eufy/v5/bff0f6e3b9e2259a.ttf);font-weight:100 900;font-display:swap}
 body.op-lock{overflow:hidden}
 .op{--disp:"Mont For Anker","Montserrat",-apple-system,"Segoe UI",sans-serif;--body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
-  position:relative;height:100vh;height:100svh;min-height:560px;background:#0b0b0d;overflow:hidden;color:#fff;isolation:isolate}
+  position:relative;z-index:5;height:100vh;height:100svh;min-height:560px;background:#0b0b0d;overflow:hidden;color:#fff;isolation:isolate}
 .op *{box-sizing:border-box}
 .op button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .op-cam{position:absolute;left:0;top:0;width:1512px;height:702px;transform-origin:0 0}
@@ -170,7 +170,7 @@ body:not(.op-done) .bookmark-nav,body.op-in .bookmark-nav{opacity:0;pointer-even
   function trim(){
     const shell=document.querySelector('#overview .canvas-shell'); if(!shell) return;
     const c=shell.firstElementChild, s=parseFloat(c.style.zoom)||Math.min(1,shell.clientWidth/1512);
-    shell.style.marginTop=(-CUT*s)+'px';
+    shell.style.marginTop='0px'; c.style.marginTop=(-CUT)+'px';   // shift inside the clipped shell so nothing overlaps the opening
     shell.style.height=((+c.dataset.designHeight)-CUT)*s+'px';
     shell.style.overflow='hidden';
   }
