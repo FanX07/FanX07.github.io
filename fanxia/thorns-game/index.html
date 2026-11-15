@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Thorns of Growth — Playable Event Demo</title>
+<style>
+@font-face{font-family:Pop;src:url(assets/pop.ttf)}
+html,body{margin:0;height:100%;background:#16130f;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1136px;height:640px;flex:none;overflow:hidden;user-select:none;-webkit-user-select:none;font-family:Pop,ui-monospace,monospace;background:#000;transform-origin:center center}
+.L{position:absolute;left:0;top:0;width:1136px;height:640px}
+.bg{background-size:1136px 640px;background-repeat:no-repeat}
+img{display:block;pointer-events:none;-webkit-user-drag:none}
+.hit{position:absolute;cursor:pointer}
+.scr{opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s .45s}
+.scr.on{opacity:1;visibility:visible;transition:opacity .45s ease}
+.scr:not(.on),.scr:not(.on) *{pointer-events:none!important}
+
+/* hub */
+#next{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;visibility:hidden}
+#dqBg,#dq{position:absolute;left:856px;top:6px;width:104px;height:96px;background-size:1136px 640px;background-position:-856px -6px;display:none}
+#dq{transform-origin:50% 45%}
+#bar,#bar2{position:absolute;left:13px;top:522px;width:656px;height:109px;pointer-events:none}
+#cnt{position:absolute;left:97px;top:140px;font-size:20px;line-height:26px;color:#fff;display:none;
+  text-shadow:0 0 1px #2a1709,1px 1px 0 #2a1709,-1px 1px 0 #2a1709,1px -1px 0 #2a1709,-1px -1px 0 #2a1709,0 2px 2px rgba(0,0,0,.5)}
+
+/* story */
+#story .dim{background:rgba(0,0,0,.39)}
+#stTl{position:absolute;left:100px;top:0;width:330px;height:100px;background:url(assets/m_grey_tl.webp) -100px 0/430px 185px no-repeat}
+#stTr{position:absolute;left:840px;top:0;width:296px;height:96px;background:url(assets/m_grey_tr.webp) 0 0/296px 110px no-repeat}
+#story.full #stTl{left:0;width:430px;height:195px;background:url(assets/m_col_tl.webp) 0 0/430px 185px no-repeat}
+#story.full #stTr{left:500px;width:636px;height:110px;background:url(assets/m_col_top.webp) 0 0/636px 110px no-repeat}
+.sbtn{position:absolute;top:32px;width:72px;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.sbtn img{width:44px;height:44px;margin-bottom:-12px}
+.sbtn span{font-size:18px;line-height:26px;color:#f1e6ca}
+#por{position:absolute;left:94px;top:172px;width:357px;height:301px;transition:opacity .3s,transform .3s}
+#cloud{position:absolute;left:727px;top:194px;width:220px;height:285px;transition:opacity .3s,transform .3s}
+.off{opacity:0;transform:translateY(10px)}
+#panelBox{position:absolute;left:7px;top:320px;width:1112px;height:354px}
+#who{position:absolute;left:217px;top:414px;transform:translateX(-50%);font-size:30px;line-height:42px;color:#f1e6ca;white-space:nowrap;
+  text-shadow:0 0 2px #6b3a10,1px 1px 0 #6b3a10,-1px 1px 0 #6b3a10,1px -1px 0 #6b3a10,-1px -1px 0 #6b3a10}
+#line{position:absolute;left:126px;top:483px;width:886px;font-size:20px;line-height:28px;color:#5c3100}
+#arw{position:absolute;left:982px;top:573px;width:29px;height:22px;opacity:0}
+#arw.on{opacity:1;animation:bob .9s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+#bAuto{left:940px;top:32px;width:72px;height:58px}
+#bSkip{left:1024px;top:32px;width:72px;height:58px}
+#bAuto.on{filter:drop-shadow(0 0 6px #ffd45a)}
+
+/* egg hint */
+#hint .dim,#pop .dim{background:rgba(21,15,29,.5)}
+#tuffy{position:absolute;left:610px;top:188px;width:593px;height:476px;transform-origin:30% 20%}
+#hint.on #tuffy{animation:popIn .45s cubic-bezier(.34,1.56,.64,1)}
+#hintT{position:absolute;left:697px;top:239px;width:253px;font-size:18px;line-height:26px;color:#5c3100}
+#hintT span{color:#b96d1b}
+
+/* egg popup */
+#card{position:absolute;left:305px;top:122px;width:526px;height:396px}
+#pop.on #card{animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
+#found{position:absolute;left:565px;top:212px;transform:translateX(-50%);font-size:20px;line-height:28px;color:#411a01;white-space:nowrap}
+#pop.on #found{animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
+#accept{left:485px;top:420px;width:160px;height:48px}
+@keyframes popIn{0%{transform:scale(.85);opacity:0}100%{transform:none;opacity:1}}
+#found{animation-name:none}
+#pop.on #found{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0}}
+
+/* video */
+#video{background:#000}
+#film{position:absolute;left:0;top:0;width:1136px;height:640px;object-fit:cover;background:#000}
+
+/* side panels (38:19750 / 38:18143) */
+#side .dim{background:rgba(21,15,29,.75)}
+#panelImg{position:absolute;left:0;top:0;width:1136px;height:640px}
+#side.on #panelImg{animation:slideIn .35s cubic-bezier(.2,.8,.2,1)}
+#side.recap.on #panelImg{animation:popIn .3s ease-out}
+@keyframes slideIn{from{transform:translateX(70px);opacity:0}}
+#vp{position:absolute;left:668px;width:448px;overflow:hidden;touch-action:none;cursor:grab;display:none}
+#vp.drag{cursor:grabbing}
+#list{position:absolute;left:0;top:0;width:448px;will-change:transform}
+#vp:after{content:"";position:absolute;left:0;right:0;bottom:0;height:78px;pointer-events:none;
+  background:linear-gradient(rgba(235,212,183,0),rgba(235,212,183,.92) 72%,rgb(235,212,183))}
+#vp:before{content:"";position:absolute;left:0;right:0;top:0;height:10px;z-index:1;pointer-events:none;background:linear-gradient(rgb(237,221,193),rgba(237,221,193,0))}
+#recapHits{display:none}
+#side.recap #recapHits{display:block}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+
+  <!-- Event hub (five map states, Figma 38:16089 → 38:16092) -->
+  <div id="hub" class="L scr">
+    <div id="base" class="L bg"></div>
+    <div id="next" class="L bg"></div>
+    <div id="dqBg"></div><div id="dq"></div>
+    <img id="bar" src="assets/bar0.webp" alt=""><img id="bar2" alt="" style="opacity:0">
+    <div id="cnt">0/6</div>
+    <div id="hits" class="L"></div>
+  </div>
+
+  <!-- Location story (38:16081, 52:14463) -->
+  <div id="story" class="L scr">
+    <div id="stTl"></div><div id="stTr"></div>
+    <div class="L dim"></div>
+    <div class="sbtn" style="left:940px"><img src="assets/i_auto.webp" alt=""><span>Auto</span></div>
+    <div class="sbtn" style="left:1024px"><img src="assets/i_skip.webp" alt=""><span>Skip</span></div>
+    <img id="por" src="assets/jerry.webp" alt="Sleepwalker Jerry">
+    <img id="cloud" class="off" src="assets/cloud.webp" alt="Storm cloud">
+    <img id="panelBox" src="assets/panel.webp" alt="">
+    <div id="who">Narrator</div>
+    <div id="line"></div>
+    <img id="arw" src="assets/arrow.webp" alt="">
+    <div class="hit" id="bAuto" title="Auto"></div>
+    <div class="hit" id="bSkip" title="Skip"></div>
+  </div>
+
+  <!-- Egg hint, auto after the map is complete (38:16082) -->
+  <div id="hint" class="L scr">
+    <div class="L dim"></div>
+    <img id="tuffy" src="assets/tuffy.webp" alt="Tuffy">
+    <div id="hintT">Spot any familiar little items on the map? <span>Find and tap them for a surprise!</span></div>
+  </div>
+
+  <!-- Egg popup (38:16087 / 38:16125) -->
+  <div id="pop" class="L scr">
+    <div class="L dim"></div>
+    <img id="card" src="assets/card.webp" alt="">
+    <div id="found">Found: 1/6</div>
+    <div class="hit" id="accept" title="Accept"></div>
+  </div>
+
+  <!-- Side panels (38:19750) -->
+  <div id="side" class="L scr">
+    <div class="L dim"></div>
+    <img id="panelImg" alt="">
+    <div id="vp"><img id="list" alt=""></div>
+    <div id="recapHits">
+      <div class="hit" id="recapX" title="Close" style="left:980px;top:59px;width:66px;height:66px;border-radius:50%"></div>
+    </div>
+  </div>
+
+  <!-- Version cover (38:16079) -->
+  <div id="cover" class="L scr">
+    <img class="L" src="assets/cover.webp" alt="Thorns of Growth version cover">
+    <div class="hit" id="go" style="left:476px;top:552px;width:224px;height:70px"></div>
+    <div class="hit" id="coverBack" title="Back" style="left:22px;top:24px;width:80px;height:54px"></div>
+  </div>
+
+  <!-- Event video (38:16080) -->
+  <div id="video" class="L scr">
+    <video id="film" src="assets/film.mp4" playsinline muted preload="auto"></video>
+  </div>
+
+  <!-- Main menu entry (38:16088) -->
+  <div id="menu" class="L scr on">
+    <img class="L" src="assets/mainmenu.webp" alt="Tom and Jerry main menu">
+    <div class="hit" id="entry" style="left:86px;top:103px;width:80px;height:84px"></div>
+  </div>
+
+</div></div>
+
+<script>
+const $=id=>document.getElementById(id), stage=$('stage');
+function fit(){const s=Math.min(innerWidth/1136,innerHeight/640);stage.style.transform=`scale(${s})`}
+addEventListener('resize',fit);fit();
+
+const STATES=[0,1,2,3,4,5,6,7].map(n=>`assets/t${n}.webp`);
+const BARS=[0,1,2,3,4,5,6,7].map(n=>`assets/bar${n}.webp`);
+[...STATES,...BARS,'assets/card_all.webp'].forEach(u=>{const i=new Image();i.src=u});
+
+/* sprite rects + tap areas from the Figma hub (1x) */
+const LOCS=[
+ {name:'Grass Path', hit:[226,200,124,150], c:[287,277]},
+ {name:'Factory',    hit:[448,88,124,156],  c:[509,165]},
+ {name:'Café',       hit:[700,140,132,160], c:[770,212]},
+ {name:'Park Bench', hit:[688,334,118,160], c:[751,405]},
+ {name:'Town Gate',  hit:[922,398,122,160], c:[983,479]},
+];
+const EGGS=[[70,310],[183,493],[400,471],[335,110],[915,146],[1062,293]];
+/* top-right entry icons, right-aligned as in the hub states */
+const ICONS=[
+ {k:'shop',x:548,w:58,from:7},{k:'exchange',x:624,w:72,from:7},{k:'task',x:712,w:46,from:7},
+ {k:'nightmare',x:778,w:74,from:7},{k:'dream',x:864,w:88,from:4},{k:'recap',x:968,w:62,from:1},{k:'cover',x:1046,w:60,from:0}
+];
+const PANELS={shop:{top:146,h:449},exchange:{top:146,h:449},task:{top:192.5,h:402.5},recap:null};
+const LINES=[
+ {who:'por', t:"The gloomy sky feels so heavy... Don’t worry, I’ll help you turn these storm clouds into a rainbow."},
+ {who:'cloud', t:"Hey, you! Why are you still standing outside? Get out there and brave the storm! Rain or shine, even in crazy weather, you’ve still gotta go to work!"},
+];
+
+let state=0, firstLogin=true, busy=false, found=new Set(), fromRecap=false;
+
+/* ---------- screens ---------- */
+function show(id){$(id).classList.add('on')}
+function hide(id){$(id).classList.remove('on')}
+function setBase(u){$('base').style.backgroundImage=`url(${u})`}
+setBase(STATES[0]);
+
+$('entry').onclick=()=>{
+  if(firstLogin){firstLogin=false;show('video');const v=$('film');v.currentTime=0;v.play().catch(()=>{});setTimeout(()=>hide('menu'),450)}
+  else{show('cover');setTimeout(()=>hide('menu'),450)}
+};
+function endVideo(){const v=$('film');v.pause();show('cover');setTimeout(()=>hide('video'),450)}
+$('film').onended=endVideo;$('video').onclick=endVideo;
+$('coverBack').onclick=()=>{show('menu');hide('cover');hide('hub')};
+$('go').onclick=()=>{show('hub');hide('cover')};
+
+/* ---------- hub hotspots ---------- */
+function mkHit(r,fn,parent=$('hits')){const h=document.createElement('div');h.className='hit';Object.assign(h.style,{left:r[0]+'px',top:r[1]+'px',width:r[2]+'px',height:r[3]+'px'});h.onclick=fn;parent.append(h);return h}
+mkHit([24,20,74,48],()=>{if(busy)return;show('cover');hide('hub')});
+/* chapter → location: Ch.1–4 one each, Ch.5–7 all at the Town Gate */
+const CH_LOC=[0,1,2,3,4,4,4];
+LOCS.forEach((l,i)=>mkHit(l.hit,()=>{if(!busy&&state<7&&CH_LOC[state]===i)openStory(state)}));
+const eggHits=EGGS.map((p,i)=>{const h=mkHit([p[0]-31,p[1]-31,62,62],()=>findEgg(i));h.style.borderRadius='50%';h.style.display='none';return h});
+const iconHits=ICONS.map(ic=>{const h=mkHit([ic.x,10,ic.w,86],()=>{if(busy)return;if(ic.k==='cover'){show('cover');hide('hub')}else if(ic.k in PANELS)openPanel(ic.k)});h.dataset.from=ic.from;return h});
+function syncIcons(){iconHits.forEach(h=>h.style.display=state>=+h.dataset.from?'block':'none');eggHits.forEach(h=>h.style.display=state===7?'block':'none')}
+syncIcons();
+/* ---------- side panels with drag / wheel scrolling ---------- */
+let panelKind=null,sy=0,minY=0,vel=0,dragging=false,lastY=0,lastT=0,moved=0,raf=0;
+function openPanel(k){
+  panelKind=k;const side=$('side');side.classList.toggle('recap',k==='recap');
+  const RV=['r2lock','r2lock','r3lock','r4lock','r5lock','runlock','runlock','runlock'];
+  $('panelImg').src=`assets/pan_${k==='recap'?RV[state]:k}.webp`;
+  recapRows.forEach((h,i)=>h.style.display=(i<4?i<state:state>=5)?'block':'none');
+  const vp=$('vp'),p=PANELS[k];
+  if(p){vp.style.display='block';vp.style.top=p.top+'px';vp.style.height=p.h+'px';
+    const l=$('list');l.onload=()=>{minY=Math.min(0,p.h-l.offsetHeight)};l.src=`assets/list_${k}.webp`;
+    l.style.width='448px';sy=0;l.style.transform='translateY(0)'}
+  else vp.style.display='none';
+  show('side');
+}
+function closePanel(){hide('side');panelKind=null}
+function setY(y){sy=y;$('list').style.transform=`translateY(${y}px)`}
+function rubber(y){if(y>0)return y*.35;if(y<minY)return minY+(y-minY)*.35;return y}
+function settle(){cancelAnimationFrame(raf);const step=()=>{
+  if(sy>0||sy<minY){const t=sy>0?0:minY;sy+= (t-sy)*.18;vel=0;if(Math.abs(t-sy)<.4)sy=t;}
+  else{sy+=vel;vel*=.92;if(sy>0||sy<minY)vel*=.5;}
+  setY(sy);if(Math.abs(vel)>.2||sy>0.01||sy<minY-0.01)raf=requestAnimationFrame(step)};raf=requestAnimationFrame(step)}
+const vpEl=$('vp');
+function scale(){return stage.getBoundingClientRect().height/640}
+vpEl.addEventListener('pointerdown',e=>{dragging=true;moved=0;cancelAnimationFrame(raf);vpEl.classList.add('drag');vpEl.setPointerCapture(e.pointerId);lastY=e.clientY;lastT=performance.now();vel=0;e.stopPropagation()});
+vpEl.addEventListener('pointermove',e=>{if(!dragging)return;const dy=(e.clientY-lastY)/scale(),now=performance.now();moved+=Math.abs(dy);
+  const raw=(sy>0||sy<minY)?sy+dy*.35:sy+dy;setY(raw);vel=dy/Math.max(1,now-lastT)*16;lastY=e.clientY;lastT=now});
+function endDrag(){if(!dragging)return;dragging=false;vpEl.classList.remove('drag');settle()}
+vpEl.addEventListener('pointerup',endDrag);vpEl.addEventListener('pointercancel',endDrag);
+vpEl.addEventListener('click',e=>e.stopPropagation());
+vpEl.addEventListener('wheel',e=>{e.preventDefault();cancelAnimationFrame(raf);vel=0;setY(rubber(sy-e.deltaY*.6));clearTimeout(vpEl._t);vpEl._t=setTimeout(settle,90)},{passive:false});
+$('side').onclick=e=>{if(panelKind==='recap')return;const r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*1136;if(x<590)closePanel()};
+$('recapX').onclick=e=>{e.stopPropagation();closePanel()};
+/* recap: Ch.1–4 rows replay the location story */
+const recapRows=[137,215,294,372,454].map((t,i)=>mkHit([490,t,462,60],e=>{e.stopPropagation();hide('side');fromRecap=true;openStory(i)},$('recapHits')));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('side').classList.contains('on'))closePanel()});
+
+/* ---------- colour wave between map states ---------- */
+function wave(url,c,ms,maxR,done){
+  const n=$('next');n.style.backgroundImage=`url(${url})`;n.style.visibility='visible';
+  const t0=performance.now();
+  const step=now=>{const t=Math.min(1,(now-t0)/ms),e=1-Math.pow(1-t,3),r=e*maxR,f=Math.max(1,r*.28);
+    const m=`radial-gradient(circle ${r+f}px at ${c[0]}px ${c[1]}px,#000 ${r}px,transparent ${r+f}px)`;
+    n.style.webkitMaskImage=m;n.style.maskImage=m;
+    if(t<1)requestAnimationFrame(step);else{setBase(url);n.style.visibility='hidden';n.style.webkitMaskImage=n.style.maskImage='none';done&&done()}};
+  requestAnimationFrame(step);
+}
+function fadeTo(url,ms,done){const n=$('next');n.style.webkitMaskImage=n.style.maskImage='none';n.style.backgroundImage=`url(${url})`;n.style.opacity=0;n.style.visibility='visible';
+  n.animate([{opacity:0},{opacity:1}],{duration:ms,easing:'ease'}).onfinish=()=>{setBase(url);n.style.visibility='hidden';n.style.opacity=1;done&&done()}}
+
+/* ---------- story ---------- */
+let li=0,typing=null,auto=false,autoT=null,cur=-1;
+function openStory(i){busy=true;cur=i;li=0;$('story').classList.toggle('full',state>=7);$('cnt').style.visibility=state>=7?'hidden':'';show('story');showLine()}
+function showLine(){
+  clearInterval(typing);clearTimeout(autoT);
+  const L=LINES[li];$('por').classList.toggle('off',L.who!=='por');$('cloud').classList.toggle('off',L.who!=='cloud');
+  const el=$('line');el.textContent='';$('arw').classList.remove('on');let k=0;
+  typing=setInterval(()=>{el.textContent=L.t.slice(0,++k);if(k>=L.t.length)endType()},22);
+}
+function endType(){clearInterval(typing);typing=null;$('line').textContent=LINES[li].t;$('arw').classList.add('on');if(auto)autoT=setTimeout(next,1500)}
+function next(){if(typing){endType();return}if(++li<LINES.length)showLine();else closeStory()}
+function closeStory(){clearInterval(typing);clearTimeout(autoT);hide('story');$('cnt').style.visibility='';if(fromRecap){fromRecap=false;busy=false;setTimeout(()=>openPanel('recap'),250);return}setTimeout(()=>advance(cur),350)}
+$('story').addEventListener('click',e=>{if(e.target.id!=='bAuto'&&e.target.id!=='bSkip')next()});
+$('bAuto').onclick=()=>{auto=!auto;$('bAuto').classList.toggle('on',auto);if(auto&&!typing)autoT=setTimeout(next,700)};
+$('bSkip').onclick=closeStory;
+addEventListener('keydown',e=>{if($('story').classList.contains('on')&&[' ','Enter','ArrowRight'].includes(e.key)){e.preventDefault();next()}});
+
+/* ---------- progression ---------- */
+function setBar(c){const b2=$('bar2');b2.src=BARS[c];b2.style.opacity=0;
+  b2.animate([{opacity:0},{opacity:1}],{duration:500,easing:'ease'}).onfinish=()=>{$('bar').src=BARS[c];b2.style.opacity=0}}
+function done(c){state=c;syncIcons();setBar(c);busy=false}
+function advance(ch){            // ch = chapter just finished (0-based)
+  const c=LOCS[CH_LOC[ch]].c, next=ch+1;
+  if(ch<3){wave(STATES[next],c,1700,1350,()=>done(next));return}
+  if(ch===3){ // Park Bench done → Town Gate opens (Ch.5) and the Dreamquest tab appears
+    $('dqBg').style.backgroundImage=`url(${STATES[3]})`;$('dqBg').style.display='block';
+    $('dq').style.backgroundImage=`url(${STATES[4]})`;
+    wave(STATES[4],c,1700,1350,()=>{done(4);busy=true;
+      const d=$('dq');d.style.display='block';
+      d.animate([{transform:'scale(.2)',opacity:0},{transform:'scale(1.15)',opacity:1,offset:.65},{transform:'scale(1)',opacity:1}],{duration:600,easing:'ease-out'}).onfinish=()=>{$('dqBg').style.display='none';d.style.display='none';busy=false}});
+    return}
+  if(ch<6){fadeTo(STATES[next],900,()=>done(next));return}   // statue: Ch.5 → Ch.6 → Ch.7 states
+  // Ch.7 done: the whole town blooms into colour
+  wave(STATES[7],c,2300,1400,()=>{done(7);$('cnt').style.display='block';setTimeout(()=>{show('hint');busy=true},500)});
+}
+$('hint').onclick=()=>{hide('hint');busy=false};
+
+/* ---------- hidden eggs ---------- */
+function findEgg(i){
+  if(busy||found.has(i))return;
+  found.add(i);$('cnt').textContent=found.size+'/6';
+  const all=found.size===6;
+  $('card').src=all?'assets/card_all.webp':'assets/card.webp';
+  $('found').style.display=all?'none':'block';$('found').textContent=`Found: ${found.size}/6`;
+  busy=true;show('pop');
+}
+$('accept').onclick=()=>{hide('pop');busy=false};
+</script>
+</body>
+</html>
