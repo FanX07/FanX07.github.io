@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bax — Playable Combat UX Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#1c1512;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+#stage{position:relative;width:1136px;height:640px;flex:none;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;font-family:'Baloo 2',system-ui,sans-serif;color:#3b2a1e;transform-origin:center center}
+#stage img{-webkit-user-drag:none;user-select:none;pointer-events:none}
+.bg{position:absolute;left:0;top:0;width:1136px;height:640px}
+.spr{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
+.spr img{position:absolute}
+.abs{position:absolute}
+#world{position:absolute;inset:0}
+
+/* hole glow (escape) */
+#hole{left:441px;top:470px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,102,.85),rgba(255,180,60,.35) 45%,transparent 70%);opacity:0;transition:opacity .4s;animation:pulse 1s ease-in-out infinite}
+#hole.on{opacity:1}
+@keyframes pulse{50%{transform:scale(1.15)}}
+
+/* player bar (replica of Figma 血条/玩家自己) */
+.pb{position:absolute;left:0;top:0;width:150px;height:44px;pointer-events:none}
+.pb .badge{position:absolute;left:0;top:4px;width:28px;height:28px;border-radius:50%;background:#77716d;box-shadow:inset 0 0 0 2px #cbbfa8,0 0 0 1.5px #4d4642;color:#fff;font:700 17px/28px 'Baloo 2';text-align:center}
+.pb .name{position:absolute;left:34px;top:-2px;font:700 15px/1 'Silkscreen',monospace;color:#3cc06a;text-shadow:-1px -1px 0 #135a2c,1px -1px 0 #135a2c,-1px 1px 0 #135a2c,1px 1px 0 #135a2c}
+.pb .hp{position:absolute;left:34px;top:18px;width:108px;height:9px;border-radius:9px;background:#a7a2a0;overflow:hidden}
+.pb .hp i{display:block;height:100%;background:#3cc06a;border-radius:9px;transition:width .15s}
+.pb .ft{position:absolute;left:34px;top:31px;width:108px;height:5px;border-radius:5px;background:#5b5654;overflow:hidden;display:none}
+.pb .ft i{display:block;height:100%;background:#f4f1ec;border-radius:5px}
+.pb .weak{position:absolute;left:30px;top:-34px;width:96px;display:none}
+.pb.isweak .hp{box-shadow:0 0 0 2px #ff6a4a,0 0 10px 3px rgba(255,90,60,.8)}
+.pb.isweak .hp i{background:#a7a2a0}
+.pb.isweak .weak{display:block}
+.pb.isweak .name{display:none}
+.pb.blink{animation:blink .2s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+
+/* rocket bits */
+#fuse{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)}
+#fuse::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#fff6e6}
+#fuse b{position:relative;z-index:1;font:800 16px/1 'Baloo 2'}
+#fuse small{position:absolute;left:50%;top:44px;transform:translateX(-50%);font:700 10px/1 'Silkscreen';color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap}
+#wrapbar{width:227px;height:49px}
+#wrapbar img{position:absolute;left:0;top:0}
+#wrapbar .mask{position:absolute;top:33px;height:13px;right:6px;background:#262021;border-radius:0 6px 6px 0}
+#cocoonbar{width:76px;height:9px;border-radius:9px;background:#a7a2a0;overflow:hidden;transform:translate(-50%,0)}
+#cocoonbar i{display:block;height:100%;background:#f0912e}
+#thread{position:absolute;left:0;top:0;width:3px;background:linear-gradient(90deg,#fff,#dfe3ea);box-shadow:0 0 0 1px rgba(80,90,110,.25);transform-origin:top center}
+.pb.ally .name{color:#5aa7ff;text-shadow:-1px -1px 0 #163c73,1px -1px 0 #163c73,-1px 1px 0 #163c73,1px 1px 0 #163c73}.pb.ally .hp i{background:#5aa7ff}
+.atag{position:absolute;left:0;top:0;transform:translate(-50%,-100%);font:800 15px/1 'Baloo 2';color:#fff;background:#3f8be0;border-radius:9px;padding:3px 8px;white-space:nowrap;display:none}
+#cocoonbar2{width:90px;height:10px;border-radius:9px;background:#a7a2a0;overflow:hidden;transform:translate(-50%,0)}#cocoonbar2 i{display:block;height:100%;background:#f0a33a}
+.bang{position:absolute;left:0;top:0;transform:translate(-50%,-100%);font:800 30px/1 'Baloo 2';color:#ff4d3a;text-shadow:0 2px 0 #fff,0 0 8px rgba(255,255,255,.9);animation:pop .3s ease-out}
+@keyframes pop{from{transform:translate(-50%,-100%) scale(.3)}}
+
+/* aim */
+#aim{position:absolute;inset:0;pointer-events:none;display:none;z-index:40}
+#aim.on{display:block}
+#aimTag{position:absolute;left:0;top:0;transform:translate(-50%,-150%);font:700 13px/1 'Baloo 2';background:rgba(40,28,20,.85);color:#fff;padding:4px 9px;border-radius:9px;white-space:nowrap}
+#aimTag.bad{background:#d9483b}
+#landIcon{position:absolute;left:0;top:0;transform:translate(-50%,-50%)}
+
+/* HUD */
+#hud{position:absolute;inset:0;z-index:50;pointer-events:none}
+#hud .h{position:absolute;pointer-events:auto;cursor:pointer;touch-action:none}
+#hud .deco{pointer-events:auto;cursor:default}
+.press{transform:scale(.92)}
+.off{filter:grayscale(1) brightness(.92);opacity:.72}
+#bShuttle .pips{position:absolute;left:50%;top:2px;transform:translateX(-50%);display:flex;gap:4px}
+#bShuttle .pips i{width:7px;height:18px;border-radius:4px;background:#b8b1a8;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+#bShuttle .pips i.f{background:#f0a33a}
+.cd{position:absolute;border-radius:50%;display:none;align-items:center;justify-content:center;font:800 26px/1 'Baloo 2';color:#fff;background:rgba(32,26,30,.72);text-shadow:0 1px 2px #000}
+.cd.on{display:flex}
+#bPassive.on img{filter:drop-shadow(0 0 6px #7dff7a) drop-shadow(0 0 2px #fff)}
+#bPassive.flash{animation:flash .5s 3}
+@keyframes flash{50%{filter:brightness(1.8)}}
+#joy{position:absolute;left:0;top:0;display:none;pointer-events:none;transform-origin:142px 144px;opacity:.95}
+#joy.on{display:block}
+#obj{position:absolute;left:568px;top:58px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(43,30,22,.78);color:#fff;border-radius:14px;padding:4px 14px 4px 6px;font:700 14px/1.2 'Baloo 2';white-space:nowrap;pointer-events:none}
+#obj .tag{background:#f0a33a;color:#3b2a1e;border-radius:9px;padding:2px 8px;font-weight:800;font-size:12px;letter-spacing:.04em}
+#obj .tm{font:700 13px/1 'Silkscreen';color:#ffd27a;margin-left:4px}
+#hint{position:absolute;left:530px;top:604px;transform:translateX(-50%);background:rgba(255,248,233,.94);border:2px solid #8a6a48;border-radius:14px;padding:4px 14px;font:700 14px/1.25 'Baloo 2';white-space:nowrap;pointer-events:none;box-shadow:0 4px 0 rgba(0,0,0,.18);max-width:520px;text-overflow:ellipsis;overflow:hidden}
+#toast{position:absolute;left:568px;top:118px;transform:translate(-50%,-6px);opacity:0;transition:.18s;background:#fff8ea;border:2px solid #8a6a48;border-radius:12px;padding:5px 14px;font:800 16px/1.2 'Baloo 2';white-space:nowrap;pointer-events:none;box-shadow:0 5px 0 rgba(0,0,0,.2)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast.bad{background:#ffe9e4;border-color:#c0443a;color:#8d2219}
+#toast.good{background:#eaf9ec;border-color:#3a8d4c;color:#1f5a2b}
+#pauseBtn{position:absolute;left:310px;top:12px;width:34px;height:34px;border-radius:50%;background:rgba(43,30,22,.7);color:#fff;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Baloo 2'}
+
+/* overlays */
+.ov{position:absolute;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(22,15,12,.55);backdrop-filter:blur(2px)}
+.ov.on{display:flex}
+.panel{background:#fbf2df;border:4px solid #7a5638;border-radius:26px;box-shadow:0 10px 0 #4d3322,0 24px 50px rgba(0,0,0,.45);padding:24px 30px 26px;text-align:center;position:relative}
+.panel h1{margin:0;font:800 40px/1 'Baloo 2';color:#5a3a22;letter-spacing:.01em}
+.panel h1 span{color:#2f8a4a}
+.panel .sub{margin:6px 0 18px;font:600 16px/1.35 'Baloo 2';color:#7a604a}
+.cards{display:flex;gap:18px;justify-content:center}
+.card{width:300px;border-radius:20px;background:#fff;border:3px solid #d9c3a1;padding:12px 14px 14px;cursor:pointer;transition:transform .12s,border-color .12s;text-align:left;position:relative}
+.card:hover{transform:translateY(-3px);border-color:#f0a33a}
+.card .art{height:120px;border-radius:14px;background:linear-gradient(#f3e7d4,#e6d2b4);position:relative;overflow:hidden;margin-bottom:10px}
+.card .art img{position:absolute;bottom:0}
+.card .no{font:700 12px/1 'Silkscreen';color:#b0743a}
+.card h2{margin:4px 0 4px;font:800 22px/1.1 'Baloo 2';color:#4a2f1c}
+.card p{margin:0;font:600 13.5px/1.35 'Baloo 2';color:#7a604a}
+.card .go{position:absolute;right:12px;bottom:12px;background:#f0a33a;color:#3b2a1e;border-radius:12px;padding:2px 12px;font:800 15px/1.6 'Baloo 2';box-shadow:0 3px 0 #b8711f}
+.keys{margin-top:16px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font:600 13px/1.3 'Baloo 2';color:#7a604a}
+.keys b{display:inline-block;background:#fff;border:2px solid #d9c3a1;border-radius:7px;padding:0 6px;margin-right:4px;color:#4a2f1c;font:700 11px/18px 'Silkscreen'}
+.btn{display:inline-block;margin:0 6px;background:#f0a33a;color:#3b2a1e;border-radius:14px;padding:4px 22px;font:800 19px/1.5 'Baloo 2';box-shadow:0 4px 0 #b8711f;cursor:pointer;border:0}
+.btn.alt{background:#efe2cb;box-shadow:0 4px 0 #bba78a}
+.res .ic{width:120px;height:120px;margin:-4px auto 6px;position:relative}
+.res .ic img{position:absolute;left:50%;bottom:0;transform:translateX(-50%)}
+.res .case{display:inline-block;margin:2px 0 8px;background:#efe2cb;border-radius:10px;padding:2px 10px;font:700 12px/1.6 'Silkscreen';color:#8a5a2e}
+.res .why{margin:0 0 18px;font:600 15.5px/1.4 'Baloo 2';color:#6c533e;max-width:520px}
+.res h1.win{color:#2f8a4a}
+.res h1.lose{color:#b2382c}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <img class="bg" src="assets/bg.webp" alt="">
+  <div id="world">
+    <div class="abs" id="hole"></div>
+  </div>
+  <div id="aim">
+    <svg width="1136" height="640" style="position:absolute;left:0;top:0">
+      <circle id="aimRange" r="283" fill="rgba(255,190,80,.10)" stroke="#f5a623" stroke-width="3" stroke-dasharray="10 9"/>
+      <line id="aimLine" stroke="#f5a623" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 10"/>
+      <g id="aimX" style="display:none"><path d="M-9 -9 L9 9 M9 -9 L-9 9" stroke="#d9483b" stroke-width="5" stroke-linecap="round"/></g>
+    </svg>
+    <img id="landIcon" src="assets/land_icon.webp" alt="">
+    <div id="aimTag">Float here</div>
+  </div>
+  <div id="hud">
+    <img class="abs deco" id="hMinimap" src="assets/minimap.webp" style="left:0;top:0" alt="">
+    <img class="abs deco" id="hStatus" src="assets/status.webp" style="left:12px;top:168px;width:178px" alt="">
+    <img class="abs deco" src="assets/cheese.webp" style="left:470px;top:15px" alt=""><div class="abs" id="cheeseFill" style="left:521px;top:24px;height:16px;width:0;border-radius:4px;background:linear-gradient(#ffd36a,#f0a33a);opacity:.9;pointer-events:none"></div>
+    <img class="abs h sig" src="assets/sig_gather.webp" style="left:993px;top:43px" alt="">
+    <img class="abs h sig" src="assets/sig_retreat.webp" style="left:1068px;top:15px" alt="">
+    <img class="abs h sig" src="assets/sig_rescue.webp" style="left:1068px;top:75px" alt="">
+    <img class="abs h sig" src="assets/sig_msg.webp" style="left:1067px;top:134px" alt="">
+    <div class="h" id="pauseBtn" title="Missions">II</div>
+    <div id="obj"><span class="tag" id="objTag">RESCUE</span><span id="objTxt"></span><span class="tm" id="objTm"></span></div>
+    <div id="hint"></div>
+    <div id="toast"></div>
+
+    <div class="h" id="bLeft" style="left:40px;top:476px;width:124px;height:124px"><img src="assets/btn_left.webp" alt=""></div>
+    <div class="h" id="bRight" style="left:204px;top:476px;width:124px;height:124px"><img src="assets/btn_right.webp" alt=""></div>
+    <div class="h" id="bPassive" style="left:733px;top:538px;width:67px;height:63px"><img src="assets/btn_passive.webp" alt=""></div>
+    <div class="h" id="bItem" style="left:1000px;top:305px;width:100px;height:100px"><img src="assets/btn_item.webp" alt=""></div>
+    <div class="h" id="bSilk" style="left:887px;top:359px;width:100px;height:114px"><img src="assets/btn_silk.webp" alt=""><div class="cd" id="silkCd" style="left:10px;top:8px;width:80px;height:80px"></div></div>
+    <div class="h" id="bShuttle" style="left:818px;top:449px;width:100px;height:137px"><img src="assets/btn_shuttle.webp" alt=""><div class="pips" id="pips"><i></i><i></i><i></i></div><div class="cd" id="shCd" style="left:10px;top:28px;width:80px;height:80px"></div></div>
+    <div class="h" id="bJump" style="left:972px;top:472px;width:128px;height:128px"><img src="assets/btn_jump.webp" alt=""></div>
+    <img id="joy" src="assets/joy_trigger.webp" alt="" style="width:284px">
+  </div>
+
+  <!-- mission select -->
+  <div class="ov on" id="menu"><div class="panel">
+    <h1>Play as <span>Bax</span></h1>
+    <div class="sub">A playable slice of the combat UX I designed for Tom and Jerry: Chase.</div>
+    <div class="cards">
+      <div class="card" data-m="1">
+        <div class="art"><img src="assets/rocket_jerry.webp" style="left:40px;height:110px" alt=""><img src="assets/bax_float.webp" style="left:110px;bottom:52px;width:150px" alt=""><img src="assets/silk_thread.webp" style="left:180px;bottom:20px;height:40px" alt=""></div>
+        <div class="no">MISSION 1</div><h2>Rescue your teammate</h2>
+        <p>Shuttle into the air, line up over the rocket and use Silk to wrap your teammate and pull them free before the fuse burns out.</p>
+        <span class="go">Play ▶</span>
+      </div>
+      <div class="card" data-m="2">
+        <div class="art"><img src="assets/tom.webp" style="left:24px;height:115px" alt=""><svg viewBox="0 0 60 44" style="position:absolute;left:150px;bottom:6px;width:62px"><path d="M3 40 L57 40 L57 18 L10 6 Z" fill="#f6c544" stroke="#9a6a1f" stroke-width="2.5" stroke-linejoin="round"/><path d="M10 6 L57 18 L52 12 Z" fill="#fde39a" stroke="#9a6a1f" stroke-width="2"/><circle cx="24" cy="28" r="4" fill="#d9a02e"/><circle cx="42" cy="32" r="3" fill="#d9a02e"/><circle cx="44" cy="22" r="2.5" fill="#d9a02e"/></svg><img src="assets/bax_idle.webp" style="left:205px;height:100px" alt=""></div>
+        <div class="no">MISSION 2</div><h2>Deliver the cheese</h2>
+        <p>Dodge the cat and push the cheese by the piano into the mouse hole in the wall. Use the moments the cat wanders off.</p>
+        <span class="go">Play ▶</span>
+      </div>
+    </div>
+    <div class="keys"><span><b>DRAG</b>Shuttle button or the room to aim</span><span><b>← →</b><b>A D</b>Move</span><span><b>SPACE</b>Jump / drop</span><span><b>E</b>Silk</span></div>
+  </div></div>
+
+  <!-- result -->
+  <div class="ov" id="result"><div class="panel res">
+    <div class="ic"><img id="resImg" src="" alt=""></div>
+    <h1 id="resTitle"></h1>
+    <div class="case" id="resCase"></div>
+    <p class="why" id="resWhy"></p>
+    <span class="btn" id="resRetry">Retry</span><span class="btn alt" id="resMenu">Missions</span>
+  </div></div>
+</div></div>
+
+<script>
+(()=>{
+'use strict';
+/* ================= constants ================= */
+const W=1136,H=640,FLOOR=533,BH=46,G=1900,WALK=235,JUMPV=640,R=283;
+const FLOAT_T=4,HANG_T=7,RECH=6,SILK_CD=8,WRAP_T=2,FUSE=45,SURVIVE=30,MAXHP=3,REGEN=.22,STRUGGLE=1.6;
+const PLAT=[{id:'floor',x0:0,x1:W,y:FLOOR},{id:'chair',x0:172,x1:300,y:478},{id:'piano',x0:655,x1:935,y:384},{id:'table',x0:972,x1:W,y:382},{id:'L',x0:224,x1:456,y:182},{id:'R',x0:648,x1:882,y:218}];
+const BOARDS=[{id:'L',x0:224,x1:456,y0:182,y1:202},{id:'R',x0:648,x1:882,y0:218,y1:240}];
+const HANGS=[{id:'L',x0:224,x1:456,y:202},{id:'R',x0:648,x1:882,y:240},{id:'C',x0:432,x1:680,y:44}];
+const ROCKET={x:790,y:218}; const JERRY={top:104,bot:200,cy:150};
+const HOLE_X=481;
+
+/* ================= dom helpers ================= */
+const $=id=>document.getElementById(id);
+const stage=$('stage'),world=$('world');
+function mk(tag,cls,parent){const e=document.createElement(tag);if(cls)e.className=cls;parent.appendChild(e);return e;}
+class Spr{
+  constructor(z){this.c=mk('div','spr',world);this.c.style.zIndex=z;this.i=mk('img','',this.c);this.i.alt='';this.k='';}
+  set(k,ox,oy){if(this.k!==k){this.i.src='assets/'+k+'.webp';this.k=k;}this.i.style.left=(-ox)+'px';this.i.style.top=(-oy)+'px';return this;}
+  at(x,y,fx=1,rot=0,extra=''){this.c.style.transform=`translate(${x}px,${y}px) rotate(${rot}rad) scale(${fx},1) ${extra}`;return this;}
+  show(v){this.c.style.display=v?'block':'none';return this;}
+  fil(f){this.i.style.filter=f||'';return this;}
+  op(o){this.i.style.opacity=o;return this;}
+}
+const SZ={bax_idle:[106,114],bax_aim:[179,94],bax_float:[212,96],bax_hang:[136,136],bax_hangcast:[99,132],bax_fly:[234,245],bax_land:[203,144],bax_stun:[125,118],
+  tom:[101,177],tom_attack:[204,194],tom_carry:[254,173],rocket:[79,128],rocket_jerry:[91,147],rocket_launch:[150,266],cocoon:[69,77],cocoon_break:[75,75],jerry_wrapped:[60,71],jerry:[92,115]};
+
+/* sprites */
+const sAlly=new Spr(20),sCheese=new Spr(19);
+const sRocket=new Spr(12),sWrapJ=new Spr(13),sTom=new Spr(22),sBax=new Spr(24),sCocoon=new Spr(23),sJerry=new Spr(21),sWeb=new Spr(26);
+sWeb.set('web',31,33);
+const thread=mk('div','',world);thread.id='thread';thread.style.zIndex=25;
+const pb=mk('div','pb',world);pb.style.zIndex=30;pb.innerHTML='<img class="weak" src="assets/weak_label.webp" alt=""><div class="badge">3</div><div class="name">player</div><div class="hp"><i></i></div><div class="ft"><i></i></div>';
+const pbHp=pb.querySelector('.hp i'),pbFt=pb.querySelector('.ft'),pbFtI=pb.querySelector('.ft i');
+const tomBar=mk('img','abs',world);tomBar.src='assets/tom_bar.webp';tomBar.style.zIndex=30;
+const fuse=mk('div','abs',world);fuse.id='fuse';fuse.style.zIndex=31;fuse.innerHTML='<b>45</b><small>FUSE</small>';
+const wrapbar=mk('div','abs',world);wrapbar.id='wrapbar';wrapbar.style.zIndex=31;wrapbar.innerHTML='<img src="assets/wrap_bar.webp" alt=""><div class="mask"></div>';
+const wrapMask=wrapbar.querySelector('.mask');
+const cocoonbar=mk('div','abs',world);cocoonbar.id='cocoonbar';cocoonbar.style.zIndex=31;cocoonbar.innerHTML='<i></i>';
+const allyBar=mk('div','pb ally',world);allyBar.style.zIndex=29;allyBar.innerHTML='<div class="badge">1</div><div class="name">player</div><div class="hp"><i style="width:100%"></i></div>';
+const allyTag=mk('div','atag',world);allyTag.style.zIndex=33;
+const cheeseBar=mk('div','abs',world);cheeseBar.id='cocoonbar2';cheeseBar.style.zIndex=31;cheeseBar.innerHTML='<i></i>';
+const bang=mk('div','bang',world);bang.textContent='!';bang.style.zIndex=32;
+
+/* ================= state ================= */
+let G0;            // game state
+let B,T,S,C,RK,A,K;    // bax, tom, silk, cocoon, rocket
+let aim=null,drag=null,paused=false,started=false;
+const keys={},btnDir={l:0,r:0};
+let jumpQueued=false;
+
+function reset(m){
+  G0={m,mode:'play',t:0,over:false,hintKey:'',holeOpen:false,survive:SURVIVE,endT:0,tips:{}};
+  B={x:m===1?150:200,y:FLOOR-BH,vx:0,vy:0,st:'ground',face:1,t:0,timer:0,timerMax:1,hang:null,hp:MAXHP,inv:0,charges:3,rech:0,silkCD:0,forced:null,plat:PLAT[0],rot:0,hops:0,flyFrom:null,shake:0};
+  T={x:m===1?920:960,y:FLOOR,vy:0,face:-1,st:'patrol',t:0,cd:0,hitDone:false,dir:-1,carry:false,wander:9+Math.random()*4,knock:0};
+  S={on:false};
+  C={st:'none',x:0,y:0,t:0};
+  A={x:90,y:FLOOR,face:1,st:'idle',t:0,cd:2,goal:0,idleT:0,flash:0};
+  K={x:600,p:0,atHole:false,pushing:false,done:false};
+  RK={st:m===1?'tied':'none',fuse:FUSE,ly:0};
+  aim=null;drag=null;
+  $('hole').classList.toggle('on',m===2);
+  $('objTag').textContent=m===1?'MISSION 1':'MISSION 2';
+  $('objTxt').textContent=m===1?'Free your teammate before the rocket launches':'Push the cheese into the mouse hole';
+  sJerry.show(false);sCocoon.show(false);sWrapJ.show(false);thread.style.display='none';sWeb.show(false);
+  sRocket.show(m===1);fuse.style.display=m===1?'flex':'none';wrapbar.style.display='none';cocoonbar.style.display='none';
+  toastMsg('');
+}
+
+/* ================= utils ================= */
+function later(fn,ms){const g=G0;setTimeout(()=>{if(G0===g)fn();},ms);}
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const easeOut=p=>1-Math.pow(1-p,3);
+const tweens=[];
+function tween(d,upd,done,ease){const tw={t:0,d,upd,done,ease:ease||(p=>p)};tweens.push(tw);return tw;}
+function killTweens(){tweens.length=0;}
+const airborne=()=>B.st==='float'||B.st==='hang';
+const grounded=()=>B.st==='ground';
+const canShuttle=()=>G0.mode==='play'&&B.charges>0&&(B.st==='ground'||B.st==='air'||B.st==='float'||B.st==='hang');
+function inBoard(x,y,px=14,py=26){for(const b of BOARDS){if(x>b.x0-px&&x<b.x1+px&&y>b.y0-py&&y<b.y1+py)return b;}return null;}
+function firstHit(x0,y0,x1,y1){const n=Math.max(1,Math.ceil(Math.hypot(x1-x0,y1-y0)/5));let px=x0,py=y0;for(let i=1;i<=n;i++){const x=lerp(x0,x1,i/n),y=lerp(y0,y1,i/n);if(inBoard(x,y))return{x:px,y:py};px=x;py=y;}return null;}
+function platBelow(x,y){let best=null;for(const p of PLAT){if(x>=p.x0&&x<=p.x1&&p.y>=y-1&&(!best||p.y<best.y))best=p;}return best;}
+
+let toastT=0;
+function toastMsg(m,kind){const t=$('toast');if(!m){t.className='';return;}t.textContent=m;t.className='on '+(kind||'');toastT=2.2;}
+function hint(k,txt){if(G0.hintKey===k)return;G0.hintKey=k;$('hint').textContent=txt;}
+function tipOnce(k,m,kind){if(G0.tips[k])return;G0.tips[k]=1;toastMsg(m,kind);}
+
+/* ================= input ================= */
+const local=e=>{const r=stage.getBoundingClientRect();const s=r.width/W;return{x:(e.clientX-r.left)/s,y:(e.clientY-r.top)/s};};
+addEventListener('keydown',e=>{
+  if(G0&&G0.mode==='play'&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' ','Space'].includes(e.key))e.preventDefault();
+  if(keys[e.code])return;keys[e.code]=true;
+  if(!G0||G0.mode!=='play')return;
+  if(['Space','ArrowUp','KeyW'].includes(e.code))jumpQueued=true;
+  if(['KeyE','KeyK'].includes(e.code))castSilk();
+  if(e.code==='Escape'&&drag){cancelAim();}
+});
+addEventListener('keyup',e=>{keys[e.code]=false;});
+const inputDir=()=>{let d=0;if(keys.ArrowLeft||keys.KeyA||btnDir.l)d-=1;if(keys.ArrowRight||keys.KeyD||btnDir.r)d+=1;return d;};
+
+function hold(el,on,off){
+  el.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();el.setPointerCapture(e.pointerId);el.classList.add('press');on(e);});
+  const up=e=>{el.classList.remove('press');off&&off(e);};
+  el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);
+}
+hold($('bLeft'),()=>btnDir.l=1,()=>btnDir.l=0);
+hold($('bRight'),()=>btnDir.r=1,()=>btnDir.r=0);
+hold($('bJump'),()=>{if(G0.mode==='play')jumpQueued=true;});
+hold($('bSilk'),()=>castSilk());
+hold($('bPassive'),()=>toastMsg('Passive · Swift & Still: regen while airborne; weakened mid-air → emergency shuttles'));
+hold($('bItem'),()=>toastMsg('Items aren’t part of this demo'));
+document.querySelectorAll('.sig').forEach(s=>hold(s,()=>toastMsg('Team signals aren’t part of this demo')));
+hold($('pauseBtn'),()=>{showMenu();});
+
+/* shuttle: joystick drag from button */
+const bSh=$('bShuttle'),joy=$('joy');
+bSh.addEventListener('pointerdown',e=>{
+  e.preventDefault();e.stopPropagation();
+  if(!canShuttle()){bump(bSh);if(G0.mode==='play'){if(B.charges===0)toastMsg('No Shuttle charges, recharging…','bad');}return;}
+  bSh.setPointerCapture(e.pointerId);
+  const p=local(e);drag={mode:'joy',cx:868,cy:517,id:e.pointerId};
+  startAim();updJoy(p);
+});
+bSh.addEventListener('pointermove',e=>{if(drag&&drag.mode==='joy')updJoy(local(e));});
+const endJoy=e=>{if(drag&&drag.mode==='joy'){joy.classList.remove('on');const fire=e.type==='pointerup';drag=null;releaseAim(fire);}};
+bSh.addEventListener('pointerup',endJoy);bSh.addEventListener('pointercancel',endJoy);
+function updJoy(p){
+  let vx=p.x-drag.cx,vy=p.y-drag.cy;const d=Math.hypot(vx,vy);
+  joy.classList.add('on');
+  const ang=Math.atan2(vy,vx);
+  joy.style.transform=`translate(${drag.cx-142}px,${drag.cy-144}px) rotate(${ang+2.25}rad)`;
+  if(d<16){setAim(B.x,B.y,true);return;}
+  const k=Math.min(1,d/120);
+  setAim(B.x+Math.cos(ang)*R*k,B.y+Math.sin(ang)*R*k,false);
+}
+/* shuttle: drag directly in the room */
+stage.addEventListener('pointerdown',e=>{
+  if(e.target.closest('.h')||e.target.closest('.ov'))return;
+  if(!G0||G0.mode!=='play')return;
+  if(!canShuttle()){if(B.charges===0){bump(bSh);toastMsg('No Shuttle charges, recharging…','bad');}return;}
+  stage.setPointerCapture(e.pointerId);drag={mode:'direct',id:e.pointerId};
+  startAim();const p=local(e);setAim(p.x,p.y,false);
+});
+stage.addEventListener('pointermove',e=>{if(drag&&drag.mode==='direct'){const p=local(e);setAim(p.x,p.y,false);}});
+const endDirect=e=>{if(drag&&drag.mode==='direct'){const fire=e.type==='pointerup';drag=null;releaseAim(fire);}};
+stage.addEventListener('pointerup',endDirect);stage.addEventListener('pointercancel',endDirect);
+function bump(el){el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:240});}
+
+/* ================= shuttle ================= */
+function startAim(){aim={x:B.x,y:B.y,short:true};$('aim').classList.add('on');if(B.st==='ground')B.vx=0;}
+function cancelAim(){aim=null;drag=null;$('aim').classList.remove('on');joy.classList.remove('on');}
+function setAim(tx,ty,short){
+  if(!aim)return;
+  let dx=tx-B.x,dy=ty-B.y;const d=Math.hypot(dx,dy);if(d>R){dx*=R/d;dy*=R/d;}
+  let x=clamp(B.x+dx,40,W-40),y=clamp(B.y+dy,40,FLOOR-BH);
+  const a={x,y,short:short||Math.hypot(x-B.x,y-B.y)<26,hang:null,invalid:false,stop:null};
+  for(const h of HANGS){if(x>h.x0+12&&x<h.x1-12&&y>=h.y-6&&y<=h.y+105){a.hang=h;a.y=h.y+50;break;}}
+  if(!a.hang&&inBoard(a.x,a.y,8,6))a.invalid=true;
+  if(!a.invalid&&!a.short){const s=firstHit(B.x,B.y,a.x,a.y);if(s&&Math.hypot(s.x-a.x,s.y-a.y)>4){a.stop=s;}}
+  aim=a;
+}
+function releaseAim(fire){
+  const a=aim;$('aim').classList.remove('on');aim=null;
+  if(!fire||!a||a.short)return;
+  if(a.invalid){toastMsg('Can’t land inside a shelf. No charge used.','bad');return;}
+  if(!canShuttle())return;
+  shuttle(a);
+}
+function shuttle(a){
+  interruptWrap('Wrap interrupted: Bax moved');
+  B.charges--;B.timer=0;
+  const end=a.stop||a;const x0=B.x,y0=B.y;
+  B.st='fly';B.rot=Math.atan2(end.y-y0,end.x-x0);B.face=end.x>=x0?1:-1;
+  const d=Math.max(.16,Math.hypot(end.x-x0,end.y-y0)/1350);
+  tween(d,p=>{B.x=lerp(x0,end.x,p);B.y=lerp(y0,end.y,p);},()=>{
+    if(B.st!=='fly')return;
+    if(a.stop){toastMsg('Hit a shelf: the Shuttle stops on contact','bad');arriveFloat();}
+    else if(a.hang){B.st='hang';B.hang=a.hang;B.y=a.hang.y+50;B.timer=B.timerMax=HANG_T;}
+    else arriveFloat();
+  },easeOut);
+}
+function arriveFloat(){B.st='float';B.hang=null;B.timer=B.timerMax=FLOAT_T;B.y=Math.min(B.y,FLOOR-BH-6);}
+function dropFromAir(forced){
+  interruptWrap(forced==='timeout'?'Wrap interrupted: float ended':'Wrap interrupted');
+  B.st='air';B.vy=forced==='hang'?60:0;B.forced=forced;B.hang=null;B.timer=0;
+}
+
+/* ================= silk ================= */
+function castSilk(){
+  if(!G0||G0.mode!=='play')return;
+  if(!(B.st==='float'||B.st==='hang')){bump($('bSilk'));toastMsg('Silk is cast from the air: Shuttle up first','bad');return;}
+  if(B.silkCD>0||S.on){bump($('bSilk'));return;}
+  B.silkCD=SILK_CD;
+  const up=B.st==='hang';
+  const x=B.x,y0=up?B.hang.y+4:B.y+30;let end,hit=false;
+  if(!up){
+    if(RK.st==='tied'&&Math.abs(x-ROCKET.x)<44&&y0<JERRY.top){end=JERRY.top+14;hit=true;}
+    else{const p=platBelow(x,y0+2);end=p?p.y:FLOOR;}
+  }else{
+    if(RK.st==='tied'&&B.hang.id==='R'&&Math.abs(x-ROCKET.x)<64){end=JERRY.cy;hit=true;}
+    else end=B.hang.id==='C'?26:B.hang.y-24;
+  }
+  S={on:true,x,y0,y:y0,end,up,hit,phase:'shoot'};
+  tipOnce(up?'silkup':'silkdown',up?'Hanging: Silk shoots upward':'Floating: Silk drops straight down');
+}
+function updSilk(dt){
+  if(!S.on)return;
+  if(S.phase==='shoot'){
+    const sp=1100*dt;S.y=S.up?Math.max(S.end,S.y-sp):Math.min(S.end,S.y+sp);
+    if(S.y===S.end){
+      if(S.hit){S.phase='wrap';S.wt=0;RK.st='wrapping';toastMsg('Hit! Hold still while the silk wraps (2s)','good');}
+      else{S.phase='retract';toastMsg(G0.m===1?'Missed: no teammate in the silk’s path':'Silk only grabs teammates','bad');}
+    }
+  }else if(S.phase==='wrap'){
+    S.wt+=dt;
+    if(S.wt>=WRAP_T){RK.st='empty';S.phase='pull';C={st:'pull',x:ROCKET.x,y:JERRY.cy,t:0};
+      const x0=C.x,y0=C.y;tween(.45,p=>{C.x=lerp(x0,B.x,p);C.y=lerp(y0,cocoonAnchorY(),p);},()=>{if(C.st==='pull')C.st='carried';},easeOut);
+      toastMsg('Wrapped! Cocoon pulled back to Bax','good');}
+  }else if(S.phase==='pull'){if(C.st!=='pull')S.on=false;}
+  else if(S.phase==='retract'){const sp=1400*dt;S.y=S.up?Math.min(S.y0,S.y+sp):Math.max(S.y0,S.y-sp);if(S.y===S.y0)S.on=false;}
+}
+function interruptWrap(msg){
+  if(S.on&&S.phase==='wrap'){S.phase='retract';RK.st='tied';toastMsg(msg,'bad');G0.tips.fail3=1;}
+  else if(S.on&&S.phase==='shoot'){S.phase='retract';}
+}
+const cocoonAnchorY=()=>B.st==='hang'?B.y+80:B.y+66;
+
+/* ================= bax update ================= */
+function hitBax(){
+  if(B.st==='fly'||B.st==='eshuttle'){tipOnce('cc','Immune to crowd control while flying','good');return;}
+  if(B.inv>0||B.st==='land'||B.st==='weak'||B.st==='stun'||B.st==='caught')return;
+  interruptWrap('Failure 3: Bax was hit, the wrap was interrupted');
+  if(aim)cancelAim();
+  if(C.st==='carried')dropCocoon();
+  const air=!(B.st==='ground');
+  if(air){
+    B.hp=Math.max(1,B.hp-1);
+    startWeak();
+  }else{
+    B.hp-=1;
+    if(B.hp<=0){caught();return;}
+    B.st='stun';B.t=.9;B.vx=-T.face*-1;B.knock=T.face*260;toastMsg('Hit! Bax is stunned','bad');
+  }
+}
+function startWeak(){
+  B.st='weak';B.t=.45;B.hang=null;B.timer=0;
+  $('bPassive').classList.remove('flash');void $('bPassive').offsetWidth;$('bPassive').classList.add('flash');
+  toastMsg('Weakened mid-air: Passive triggers emergency shuttles','bad');
+  B.hops=2;
+}
+function emergencyHop(){
+  let best=null;
+  for(let i=0;i<14;i++){
+    const away=(B.x<T.x?-1:1);const a=i<8?(-Math.PI/2)+(away*(0.35+Math.random()*0.9)):Math.random()*Math.PI*2;const r=120+Math.random()*80;
+    let x=clamp(B.x+Math.cos(a)*r,50,W-50),y=clamp(B.y+Math.sin(a)*r,60,FLOOR-BH-10);
+    const s=firstHit(B.x,B.y,x,y);if(s){x=s.x;y=s.y;}
+    if(Math.hypot(x-B.x,y-B.y)>60){best={x,y};break;}
+  }
+  if(!best)best={x:B.x,y:B.y};
+  const x0=B.x,y0=B.y;B.st='eshuttle';B.rot=Math.atan2(best.y-y0,best.x-x0);B.face=best.x>=x0?1:-1;
+  tween(.24,p=>{B.x=lerp(x0,best.x,p);B.y=lerp(y0,best.y,p);},()=>{B.st='weak';B.t=.28;},easeOut);
+}
+function caught(){
+  B.st='caught';T.st='carry';T.t=0;G0.mode='ending';
+  toastMsg('Caught!','bad');
+  later(()=>endGame(false,'Bax was caught','Failure 3 · Bax Caught','On the ground Bax has no escape tools. Stay airborne near the cat: floating and hanging keep you out of reach.','tom_carry'),1400);
+}
+function landOn(p){
+  B.y=p.y-BH;B.vy=0;B.plat=p;
+  if(B.forced==='weak'){B.st='land';B.t=.8;B.weakLand=true;B.inv=0;}
+  else if(B.forced==='timeout'){B.st='land';B.t=.45;B.weakLand=false;}
+  else B.st='ground';
+  B.forced=null;
+  if(C.st==='carried')dropCocoon();
+}
+function updBax(dt){
+  B.inv=Math.max(0,B.inv-dt);
+  if(B.charges<3){B.rech+=dt;if(B.rech>=RECH){B.charges++;B.rech=0;}}else B.rech=0;
+  B.silkCD=Math.max(0,B.silkCD-dt);
+  if(B.st==='float'||B.st==='hang')B.hp=Math.min(MAXHP,B.hp+REGEN*dt);
+  const jq=jumpQueued;jumpQueued=false;
+  switch(B.st){
+    case 'ground':{
+      const dir=aim?0:inputDir();B.vx=dir*WALK;if(dir)B.face=dir;
+      B.x=clamp(B.x+B.vx*dt,28,W-28);
+      if(!(B.x>=B.plat.x0&&B.x<=B.plat.x1)){B.st='air';B.vy=0;}
+      if(jq&&!aim){B.st='air';B.vy=-JUMPV;}
+      break;}
+    case 'air':{
+      const dir=(aim||B.forced)?0:inputDir();if(!B.forced){B.vx=dir*WALK*.9;if(dir)B.face=dir;}else B.vx*=.9;
+      B.x=clamp(B.x+B.vx*dt,28,W-28);
+      const f0=B.y+BH;B.vy=Math.min(B.vy+G*dt,1300);B.y+=B.vy*dt;const f1=B.y+BH;
+      if(B.vy>0){for(const p of PLAT){if(B.x>=p.x0&&B.x<=p.x1&&f0<=p.y+1&&f1>=p.y){landOn(p);break;}}}
+      break;}
+    case 'float':case 'hang':{
+      const wrapping=S.on&&(S.phase==='wrap'||S.phase==='shoot');
+      if(!wrapping)B.timer-=dt;   // casting pauses the float countdown
+      if(jq&&!aim){dropFromAir(B.st==='hang'?'hang':null);break;}
+      if(B.timer<=0)dropFromAir('timeout');
+      break;}
+    case 'weak':{B.t-=dt;if(B.t<=0){if(B.hops>0){B.hops--;emergencyHop();}else{B.st='air';B.vy=0;B.forced='weak';}}break;}
+    case 'land':{B.t-=dt;if(B.t<=0){B.st='ground';if(B.weakLand)B.inv=1;}break;}
+    case 'stun':{B.t-=dt;B.x=clamp(B.x+B.knock*dt,28,W-28);B.knock*=.85;if(B.t<=0){B.st='ground';B.inv=1.6;}
+      if(!(B.x>=B.plat.x0&&B.x<=B.plat.x1)){B.st='air';B.vy=0;}break;}
+  }
+}
+function enterHole(){
+  B.st='enter';G0.mode='ending';
+  const x0=B.x;tween(.5,p=>{B.x=lerp(x0,HOLE_X,p);},()=>{B.gone=true;later(()=>endGame(true,'Escaped!','Mission 2 complete','You kept Bax out of reach using Shuttle, float and hang, then slipped into the mouse hole.','bax_idle'),500);});
+}
+
+/* ================= cocoon / teammate ================= */
+function dropCocoon(){
+  C.st='fall';C.vy=0;C.x=clamp(C.x+(B.st==='ground'||B.st==='land'||B.st==='stun'?62*B.face:0),40,W-40);C.y=Math.min(C.y,B.y);
+  const p=platBelow(C.x,C.y)||PLAT[0];C.land=p;
+}
+function updCocoon(dt){
+  if(C.st==='carried'){C.x=B.x;C.y=cocoonAnchorY();if(B.st==='ground'||B.st==='land'||B.st==='stun')dropCocoon();}
+  else if(C.st==='fall'){C.vy=(C.vy||0)+G*dt;C.y+=C.vy*dt;
+    if(C.y+38>=C.land.y){C.y=C.land.y-38;C.st='struggle';C.t=STRUGGLE;C.plat=C.land;toastMsg('Teammate is struggling free…','good');}}
+  else if(C.st==='struggle'){C.t-=dt*(A.st==='help'?2.4:1);if(C.t<=0){C.st='free';C.fx=C.x;C.fy=C.y+38;toastMsg('Teammate rescued!','good');
+      later(()=>{if(G0.mode==='play'||G0.mode==='ending')endGame(true,'Teammate rescued!','Mission 1 complete','Cast, wrap, pull and land: the silk rescue read clearly at every step, with the wrap timer, the cocoon pull and the struggle bar.','jerry');},1300);G0.mode='ending';}}
+  else if(C.st==='free'){const p=platBelow(C.fx,C.fy-2);C.fy=p?p.y:FLOOR;C.fx+=(C.fx<HOLE_X?1:-1)*120*dt;}
+}
+
+/* ================= rocket ================= */
+function updRocket(dt){
+  if(G0.m!==1)return;
+  if(RK.st==='tied'||RK.st==='wrapping'){RK.fuse-=dt;if(RK.fuse<=0){RK.fuse=0;RK.st='launch';interruptWrap('');S.on=false;G0.mode='ending';toastMsg('The rocket launched!','bad');
+    tween(1.2,p=>{RK.ly=-560*p*p;},()=>endGame(false,'The rocket launched first','Failure 2 · Rocket Launches First','The fuse ring and timer warn you ahead of time. Shuttle above the rocket early, or hang under its shelf and cast Silk upward.','rocket_launch'));}}
+}
+
+/* ================= tom ================= */
+function tomOn(){return T.x>-40&&T.x<W+40;}
+function updTom(dt){
+  T.cd=Math.max(0,T.cd-dt);
+  if(T.st==='carry'){T.t+=dt;T.face=1;T.x+=160*dt;return;}
+  if(G0.mode!=='play'&&G0.mode!=='ending')return;
+  // --- wander off-screen now and then, so the player gets a window
+  if(T.st==='leave'){const ex=T.x<W/2?-160:W+160;T.face=Math.sign(ex-T.x);T.x+=T.face*270*dt;if(Math.abs(T.x-ex)<10){T.st='away';T.t=5+Math.random()*2.5;}return;}
+  if(T.st==='away'){T.t-=dt;if(T.t<=0){T.st='return';toastMsg('The cat is back!','bad');}return;}
+  if(T.st==='return'){const tx=T.x<0?90:W-90;T.face=Math.sign(tx-T.x);T.x+=T.face*240*dt;if(Math.abs(T.x-tx)<10){T.st='chase';T.wander=11+Math.random()*6;}return;}
+  if(T.st==='stagger'){T.t-=dt;T.x=clamp(T.x+T.knock*dt,40,W-40);T.knock*=.9;if(T.t<=0){T.st='chase';T.cd=.4;}return;}
+  if(T.st==='patrol'||T.st==='chase'){T.wander-=dt;if(T.wander<=0&&G0.mode==='play'){T.st='leave';toastMsg('The cat wandered off. Now’s your chance!','good');return;}}
+  // --- pick a target (no jumping: the cat only reaches what's at its own height)
+  let tx=null,tgt=null;
+  const onFloor=b=>(b.st==='ground'||b.st==='stun'||b.st==='land')&&b.plat&&b.plat.id==='floor';
+  const reachBax=B.st!=='caught'&&!B.gone&&onFloor(B);  // the cat only hits mice on its own platform
+  if(G0.m===1&&C.st==='struggle'&&C.plat&&C.plat.id==='floor'&&Math.abs(C.x-T.x)<280){tx=C.x;tgt='cocoon';}
+  else if(G0.m===2){if(reachBax||Math.abs(B.x-T.x)>140){tx=B.x;tgt=reachBax?'bax':null;}}
+  else{const near=reachBax&&B.x>480&&Math.abs(B.x-T.x)<320;T.notice=near?(T.notice||0)+dt:0;if(near&&(grounded()||T.notice>1.1)){tx=B.x;tgt='bax';}}
+  if(!tgt&&A.st!=='down'&&Math.abs(A.x-T.x)<230&&tx===null){tx=A.x;tgt='ally';}
+  if(T.st==='patrol'||T.st==='chase'){
+    let sp=0;
+    if(tx===null){T.st='patrol';if(T.x<600)T.dir=1;if(T.x>1040)T.dir=-1;sp=110*T.dir;T.face=T.dir;}
+    else{T.st='chase';const dx=tx-T.x;if(Math.abs(dx)>58){sp=Math.sign(dx)*(G0.m===2?245:240);T.face=Math.sign(dx);}else{T.face=Math.sign(dx)||T.face;}}
+    T.x=clamp(T.x+sp*dt,40,W-40);
+    if(T.cd<=0&&tgt){
+      const tx2=tgt==='cocoon'?C.x:tgt==='ally'?A.x:B.x;
+      if(Math.abs(tx2-T.x)<(tgt==='bax'?95:80)){T.st='windup';T.t=.38;T.tgt=tgt;}
+    }
+  }else if(T.st==='windup'){T.t-=dt;if(T.t<=0){T.st='strike';T.t=.24;T.hitDone=false;}}
+  else if(T.st==='strike'){
+    T.t-=dt;
+    if(!T.hitDone){
+      const xa=T.face>0?T.x-30:T.x-125,xb=T.face>0?T.x+125:T.x+30;const ya=T.y-190,yb=T.y+5;
+      if(T.tgt==='cocoon'){if(C.st==='struggle'&&C.x>xa&&C.x<xb){T.hitDone=true;C.st='broken';G0.mode='ending';toastMsg('The cat broke the cocoon!','bad');
+          later(()=>endGame(false,'The cat broke the cocoon','Edge case · Enemy breaks the cocoon','Any player can break the cocoon. Land it away from the cat, or let your teammate shoot the cat back while the trapped mouse struggles free.','cocoon_break'),1100);}}
+      if(!T.hitDone&&A.st!=='down'&&A.x>xa&&A.x<xb){T.hitDone=true;A.st='down';A.t=2.6;A.knock=T.face*240;toastMsg('Your teammate got hit!','bad');}
+      if(!T.hitDone&&reachBax&&B.x+26>xa&&B.x-26<xb){T.hitDone=true;hitBax();}
+    }
+    if(T.t<=0){T.st='recover';T.t=T.hitDone?.9:.55;}
+  }else if(T.st==='recover'){T.t-=dt;if(T.t<=0){T.st='chase';T.cd=.35;}}
+}
+
+/* ================= ally mouse (teammate in the fight) ================= */
+function updAlly(dt){
+  A.cd=Math.max(0,A.cd-dt);
+  if(G0.mode!=='play'&&G0.mode!=='ending')return;
+  if(A.st==='down'){A.t-=dt;A.x=clamp(A.x+A.knock*dt,30,W-30);A.knock*=.88;if(A.t<=0)A.st='idle';return;}
+  if(A.st==='shoot'){A.t-=dt;if(A.t<=0){A.st='idle';A.cd=4.5;
+      if(tomOn()&&Math.abs(T.x-A.x)<380&&['patrol','chase','windup','recover'].includes(T.st)){T.st='stagger';T.t=.9;T.knock=Math.sign(T.x-A.x)*300;A.flash=.25;toastMsg('Your teammate shot the cat back!','good');}}
+    return;}
+  let goal=null;
+  if(G0.m===1&&C.st==='struggle'&&tomOn()&&Math.abs(T.x-C.x)<300&&Math.abs(T.x-A.x)<360&&A.cd<=0&&['chase','windup','patrol'].includes(T.st)){A.st='shoot';A.t=.35;A.face=Math.sign(T.x-A.x)||1;return;}
+  if(G0.m===1&&C.st==='struggle'){goal=C.x+(C.x>A.x?-48:48);
+    if(Math.abs(A.x-goal)<12){A.st='help';A.face=Math.sign(C.x-A.x)||1;}
+    else A.st='run';}
+  else{
+    if(tomOn()&&Math.abs(T.x-A.x)<300&&A.cd<=0&&['patrol','chase','windup'].includes(T.st)){A.st='shoot';A.t=.45;A.face=Math.sign(T.x-A.x)||1;return;}
+    if(tomOn()&&Math.abs(T.x-A.x)<150){goal=A.x+(A.x<T.x?-200:200);}
+    else{if(!A.goal||Math.abs(A.goal-A.x)<8){A.idleT=(A.idleT||0)-dt;if(A.idleT<=0){A.goal=110+Math.random()*260;A.idleT=1.5+Math.random()*2;}}goal=A.goal;}
+    A.st=Math.abs(goal-A.x)>8?'run':'idle';
+  }
+  if(A.st==='run'){const d=Math.sign(goal-A.x);A.face=d;A.x=clamp(A.x+d*200*dt,30,W-30);}
+}
+
+/* ================= cheese (mission 2) ================= */
+const PUSH_T=5;
+function updCheese(dt){
+  if(G0.m!==2||G0.mode!=='play')return;
+  if(!K.atHole){
+    if(B.st==='ground'&&B.plat.id==='floor'){
+      const dx=K.x-B.x;const dir=inputDir();
+      if(Math.abs(dx)<52&&dir&&Math.sign(dx)===dir){K.x=clamp(K.x+dir*120*dt,40,W-40);B.x=K.x-dir*52;B.pushing=true;}
+    }
+    if(Math.abs(K.x-HOLE_X)<16){K.x=HOLE_X;K.atHole=true;toastMsg('Cheese at the hole! Stay next to it to push it in','good');}
+  }else{
+    if(B.st==='ground'&&B.plat.id==='floor'&&B.x<K.x+50&&B.x>K.x-10)B.x=K.x+50;
+    const near=B.st==='ground'&&B.plat.id==='floor'&&Math.abs(B.x-K.x)<80;
+    K.pushing=near;
+    if(near){K.p=Math.min(1,K.p+dt/PUSH_T);if(K.p>=1){G0.mode='ending';K.done=true;toastMsg('Cheese pushed in!','good');
+      later(()=>endGame(true,'Cheese delivered!','Mission 2 complete','You dodged the cat with Shuttle, float and hang, and used the moments the cat wandered off to push the cheese into the hole.','bax_idle'),900);}}
+  }
+}
+
+/* ================= main loop ================= */
+let last=performance.now();
+function step(dt){
+  G0.t+=dt;
+  for(let i=tweens.length-1;i>=0;i--){const tw=tweens[i];tw.t+=dt;const p=Math.min(1,tw.t/tw.d);tw.upd(tw.ease(p));if(p>=1){tweens.splice(i,1);tw.done&&tw.done();}}
+  if(G0.mode==='play'||G0.mode==='ending'){
+    B.pushing=false;updBax(dt);updCheese(dt);updSilk(dt);updCocoon(dt);updRocket(dt);updTom(dt);updAlly(dt);A.flash=Math.max(0,A.flash-dt);
+  }
+  if(toastT>0){toastT-=dt;if(toastT<=0)$('toast').className='';}
+  hints();
+}
+function hints(){
+  if(G0.mode!=='play')return;
+  if(G0.m===1){
+    if(C.st==='struggle'||C.st==='fall')hint('strug',A.st==='help'?'Your teammate is helping break the cocoon!':'Keep the cat away while your teammate breaks free');
+    else if(C.st==='carried')hint('carry','Land away from the cat to free your teammate (Jump = drop)');
+    else if(S.on&&S.phase==='wrap')hint('wrap','Stay put: the wrap takes 2s and a hit will break it');
+    else if(B.st==='float')hint('float','Over the rocket? Press Silk to drop it straight down');
+    else if(B.st==='hang')hint('hang',B.hang&&B.hang.id==='R'?'Under the rocket’s shelf: Silk shoots upward':'Hanging lasts longer. Silk shoots upward from here');
+    else hint('start','Drag the Shuttle button (or the room) to fly up toward the rocket');
+  }else{
+    if(T.st==='away'||T.st==='leave')hint('away','The cat is gone: push the cheese now!');
+    else if(K.atHole)hint('push','Stay next to the cheese to push it in (a hit pauses you)');
+    else if(airborne())hint('air','The cat can’t reach you up here, but watch the float timer');
+    else hint('run','Push the cheese left into the hole. The cat only hits mice on the floor, so Shuttle up when it gets close');
+  }
+}
+
+/* ================= render ================= */
+function render(){
+  // ---- bax
+  let k,ox,oy,x=B.x,y=B.y,fx=B.face,rot=0,extra='',fil='';
+  const st=B.st;
+  if(st==='fly'||st==='eshuttle'){k='bax_fly';ox=205;oy=30;
+    if(Math.cos(B.rot)>=0){fx=1;rot=B.rot+0.80;}else{fx=-1;rot=B.rot-Math.PI-0.80;}
+  }
+  else if(st==='float'){k='bax_float';[ox,oy]=[106,48];y+=Math.sin(G0.t*3)*3;fx=1;}
+  else if(st==='hang'){const casting=S.on&&S.up;k=casting?'bax_hangcast':'bax_hang';ox=casting?49:68;oy=0;y=B.hang.y-4;fx=1;}
+  else if(st==='weak'){k='bax_float';[ox,oy]=[106,48];fil='brightness(.9) sepia(.35) saturate(1.8) hue-rotate(-25deg)';x+=Math.sin(G0.t*60)*3;fx=1;}
+  else if(st==='air'){k='bax_aim';[ox,oy]=[89,47];if(B.forced==='weak')fil='brightness(.9) sepia(.35) saturate(1.8) hue-rotate(-25deg)';}
+  else if(st==='land'){k=B.weakLand?'bax_land':'bax_land';ox=101;oy=136;y=B.y+BH;}
+  else if(st==='stun'||st==='caught'){k='bax_stun';ox=62;oy=118;y=B.y+BH;}
+  else if(aim&&st==='ground'){k='bax_aim';ox=89;oy=94;y=B.y+BH;}
+  else {k='bax_idle';ox=53;oy=114;y=B.y+BH;if(Math.abs(B.vx)>1)extra=`translateY(${-Math.abs(Math.sin(G0.t*14))*5}px)`;}
+  sBax.set(k,ox,oy).at(x,y,fx,rot,extra).fil(fil).show(st!=='caught'&&!B.gone);
+  if(st==='enter'){sBax.at(x,y,fx,0,`scale(${1-Math.min(1,Math.abs(B.x-HOLE_X)<4?.6:0)})`);}
+  sBax.op(B.inv>0&&Math.floor(G0.t*10)%2?.45:1);
+
+  // player bar
+  const top=(st==='hang')?B.hang.y-48:(st==='float'||st==='weak'||st==='air')?B.y-92:(st==='fly'||st==='eshuttle')?B.y-90:B.y+BH-158;
+  pb.style.transform=`translate(${B.x-75}px,${top}px)`;
+  pb.style.display=(st==='caught'||B.gone)?'none':'block';
+  pbHp.style.width=(B.hp/MAXHP*100)+'%';
+  const showFt=(st==='float'||st==='hang')&&B.timerMax>0;pbFt.style.display=showFt?'block':'none';
+  if(showFt)pbFtI.style.width=(Math.max(0,B.timer)/B.timerMax*100)+'%';
+  pb.classList.toggle('isweak',st==='weak'||st==='eshuttle'||(st==='air'&&B.forced==='weak')||(st==='land'&&B.weakLand));
+
+  // ---- tom
+  let tk='tom',tox=50,toy=177,trot=0;
+  if(T.st==='strike'){tk='tom_attack';tox=85;toy=194;}
+  else if(T.st==='carry'){tk='tom_carry';tox=120;toy=173;}
+  else if(T.st==='windup'){trot=-0.12*T.face;}
+  else if(T.st==='jumpprep'){trot=0;}
+  const walking=(T.st==='chase'||T.st==='patrol')&&T.vy===0;
+  sTom.set(tk,tox,toy).at(T.x,T.y,T.face,trot,walking?`translateY(${-Math.abs(Math.sin(G0.t*11))*4}px)`:'');
+  if(T.st==='stagger')trot=Math.sin(G0.t*30)*.15;
+  sTom.at(T.x,T.y,T.face,trot,walking?`translateY(${-Math.abs(Math.sin(G0.t*11))*4}px)`:'');
+  // ally
+  let ak='teammate_gun',aox=45,aoy=97,arot=0,afil='';
+  if(A.st==='down'){arot=-.5*A.face;afil='grayscale(.6)';}
+  const arun=A.st==='run';
+  sAlly.set(ak,aox,aoy).at(A.x,A.y,A.face,arot,arun?`translateY(${-Math.abs(Math.sin(G0.t*14))*4}px)`:A.st==='shoot'?`translateX(${-Math.sin(G0.t*40)*2}px)`:'').fil(afil);
+  allyBar.style.transform=`translate(${A.x-75}px,${A.y-150}px)`;
+  allyTag.style.display=(A.st==='help'||A.flash>0||A.st==='down')?'block':'none';
+  allyTag.textContent=A.st==='help'?'Helping!':A.st==='down'?'Ouch!':'Bang!';allyTag.style.background=A.st==='down'?'#c0443a':'#3f8be0';
+  allyTag.style.transform=`translate(${A.x}px,${A.y-155}px) translate(-50%,-100%)`;
+  // cheese
+  sCheese.show(G0.m===2&&!K.done);
+  if(G0.m===2){sCheese.set('cheese_big',32,52).at(K.x,FLOOR+2,1,0,K.atHole&&K.pushing?`translateX(${Math.sin(G0.t*30)*1.5}px)`:'');}
+  cheeseBar.style.display=(G0.m===2&&K.atHole&&!K.done)?'block':'none';
+  if(G0.m===2){cheeseBar.style.left=K.x+'px';cheeseBar.style.top=(FLOOR-80)+'px';cheeseBar.firstChild.style.width=(K.p*100)+'%';}
+  tomBar.style.transform=`translate(${T.x-72}px,${T.y-177-38}px)`;tomBar.style.display=T.st==='carry'?'none':'block';
+  bang.style.display=T.st==='windup'?'block':'none';bang.style.transform=`translate(${T.x-50*0}px,${T.y-205}px) translate(-50%,-100%)`;
+
+  // ---- rocket
+  if(G0.m===1){
+    if(RK.st==='launch'){sRocket.set('rocket_launch',75,240).at(ROCKET.x,ROCKET.y+RK.ly);}
+    else if(RK.st==='tied'){sRocket.set('rocket_jerry',45,147).at(ROCKET.x,ROCKET.y);}
+    else sRocket.set('rocket',39,128).at(ROCKET.x,ROCKET.y);
+    sWrapJ.show(RK.st==='wrapping');if(RK.st==='wrapping')sWrapJ.set('jerry_wrapped',30,36).at(ROCKET.x+1,JERRY.cy-6,1,0,`scale(${.6+.4*Math.min(1,S.wt/WRAP_T)})`);
+    const fz=RK.fuse/FUSE;fuse.style.display=(RK.st==='tied'||RK.st==='wrapping')?'flex':'none';
+    fuse.style.left=(ROCKET.x+64)+'px';fuse.style.top='112px';
+    fuse.style.background=`conic-gradient(${RK.fuse<12?'#e2443a':'#f0a33a'} ${fz*360}deg,#d8cbb8 0)`;fuse.querySelector('b').textContent=Math.ceil(RK.fuse);
+    wrapbar.style.display=(S.on&&S.phase==='wrap')?'block':'none';
+    if(S.on&&S.phase==='wrap'){wrapbar.style.left=(ROCKET.x-45-238)+'px';wrapbar.style.top='122px';wrapMask.style.width=Math.max(0,(1-S.wt/WRAP_T)*190)+'px';}
+  }
+  // ---- silk thread + web
+  if(S.on&&S.phase!=='pull'){
+    const ya=Math.min(S.y0,S.y),yb=Math.max(S.y0,S.y);
+    thread.style.display='block';thread.style.height=(yb-ya)+'px';thread.style.transform=`translate(${S.x-1.5}px,${ya}px)`;
+    sWeb.show(S.phase==='shoot'||S.phase==='retract').at(S.x,S.y,1,G0.t*6);
+  }else if(C.st==='carried'||C.st==='pull'){
+    const ya=(B.st==='hang'?B.hang.y+20:B.y+20),yb=C.y-30;thread.style.display=yb>ya?'block':'none';thread.style.height=Math.max(0,yb-ya)+'px';thread.style.transform=`translate(${C.x-1.5}px,${ya}px)`;sWeb.show(false);
+  }else{thread.style.display='none';sWeb.show(false);}
+  // ---- cocoon / jerry
+  if(C.st==='pull'||C.st==='carried'||C.st==='fall'){sCocoon.show(true).set('cocoon',34,38).at(C.x,C.y,1,Math.sin(G0.t*5)*.08);}
+  else if(C.st==='struggle'||C.st==='broken'){sCocoon.show(true).set('cocoon_break',37,37).at(C.x,C.y,1,Math.sin(G0.t*30)*.06);}
+  else sCocoon.show(false);
+  cocoonbar.style.display=C.st==='struggle'?'block':'none';
+  if(C.st==='struggle'){cocoonbar.style.left=C.x+'px';cocoonbar.style.top=(C.y-52)+'px';cocoonbar.firstChild.style.width=((1-C.t/STRUGGLE)*100)+'%';}
+  sJerry.show(C.st==='free');if(C.st==='free')sJerry.set('jerry',46,115).at(C.fx,C.fy,C.fx<HOLE_X?1:-1,0,`translateY(${-Math.abs(Math.sin(G0.t*14))*4}px)`);
+
+  // ---- aim
+  if(aim){
+    const r=$('aimRange');r.setAttribute('cx',B.x);r.setAttribute('cy',B.y);
+    const ln=$('aimLine');const end=aim.stop||aim;ln.setAttribute('x1',B.x);ln.setAttribute('y1',B.y);ln.setAttribute('x2',end.x);ln.setAttribute('y2',end.y);ln.style.display=aim.short?'none':'';
+    ln.setAttribute('stroke',aim.invalid?'#d9483b':'#f5a623');
+    const li=$('landIcon');li.style.display=aim.short||aim.invalid?'none':'block';li.style.left=end.x+'px';li.style.top=end.y+'px';
+    const tg=$('aimTag');tg.style.left=end.x+'px';tg.style.top=(end.y-18)+'px';tg.classList.toggle('bad',aim.invalid||!!aim.stop);
+    tg.textContent=aim.short?'Release here to cancel':aim.invalid?'Can’t land inside a shelf':aim.stop?'Blocked: stops at the shelf':aim.hang?'Hang here':'Float here';
+    const x=$('aimX');x.style.display=aim.stop?'':'none';if(aim.stop)x.setAttribute('transform',`translate(${aim.stop.x},${aim.stop.y})`);
+  }
+  // ---- HUD
+  const pips=$('pips').children;for(let i=0;i<3;i++)pips[i].classList.toggle('f',i<B.charges);
+  $('bShuttle').classList.toggle('off',!canShuttle()&&!drag);
+  const shCd=$('shCd');shCd.classList.toggle('on',B.charges===0);shCd.textContent=B.charges===0?Math.ceil(RECH-B.rech):'';
+  const silkOk=(B.st==='float'||B.st==='hang')&&!S.on&&B.silkCD===0;
+  $('bSilk').classList.toggle('off',!(B.st==='float'||B.st==='hang'));
+  const sc=$('silkCd');sc.classList.toggle('on',B.silkCD>0);sc.textContent=B.silkCD>0?Math.ceil(B.silkCD):'';
+  $('bSilk').style.filter=silkOk?'drop-shadow(0 0 8px rgba(255,220,120,.95))':'';
+  $('bPassive').classList.toggle('on',B.st==='float'||B.st==='hang'||B.st==='weak'||B.st==='eshuttle');
+  const tm=$('objTm');
+  if(G0.m===1)tm.textContent=(RK.st==='tied'||RK.st==='wrapping')?('⏱ '+Math.ceil(RK.fuse)+'s'):'';
+  else tm.textContent=K.atHole?(Math.round(K.p*100)+'%'):'';
+  $('cheeseFill').style.width=(G0.m===2?(K.atHole?K.p:0)*135:0)+'px';
+}
+function loop(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(started&&!paused&&G0)step(dt);
+  if(G0)render();
+  requestAnimationFrame(loop);
+}
+
+/* ================= screens ================= */
+function startMission(m){reset(m);started=true;killTweens();$('menu').classList.remove('on');$('result').classList.remove('on');G0.mode='play';
+  toastMsg(m===1?'Mission 1: rescue your teammate from the rocket':'Mission 2: escape the cat');}
+function showMenu(){if(G0)G0.mode='menu';cancelAim();$('result').classList.remove('on');$('menu').classList.add('on');}
+function endGame(win,title,cas,why,img){
+  if(G0.over)return;G0.over=true;G0.mode='end';cancelAim();
+  $('resTitle').textContent=title;$('resTitle').className=win?'win':'lose';
+  $('resCase').textContent=cas;$('resWhy').textContent=why;
+  const im=$('resImg');im.src='assets/'+img+'.webp';im.style.maxHeight='120px';im.style.maxWidth='200px';
+  setTimeout(()=>$('result').classList.add('on'),250);
+}
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>startMission(+c.dataset.m)));
+$('resRetry').addEventListener('click',()=>startMission(G0.m));
+$('resMenu').addEventListener('click',showMenu);
+
+/* pause when hidden / scrolled out of view (for portfolio embeds) */
+let offscreen=false;
+document.addEventListener('visibilitychange',()=>{paused=document.hidden||offscreen;last=performance.now();});
+try{new IntersectionObserver(es=>{offscreen=!es[0].isIntersecting;paused=document.hidden||offscreen;last=performance.now();}).observe(stage);}catch(e){}
+addEventListener('blur',()=>{for(const k in keys)keys[k]=false;btnDir.l=btnDir.r=0;});
+
+/* scale to fit */
+function fit(){const s=Math.min(innerWidth/W,innerHeight/H);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+
+/* tom's enemy health bar uses the Figma red bar */
+tomBar.src='assets/tom_bar.webp';
+
+reset(1);G0.mode='menu';render();requestAnimationFrame(loop);
+window.__bax={get B(){return B},get T(){return T},get G(){return G0},get S(){return S},get C(){return C},get RK(){return RK},get A(){return A},get K(){return K},startMission,castSilk,shuttleTo:(x,y)=>{startAim();setAim(x,y,false);releaseAim(true);}};
+})();
+</script>
+</body>
+</html>
