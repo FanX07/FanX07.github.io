@@ -296,7 +296,7 @@ hold($('bLeft'),()=>btnDir.l=1,()=>btnDir.l=0);
 hold($('bRight'),()=>btnDir.r=1,()=>btnDir.r=0);
 hold($('bJump'),()=>{if(G0.mode==='play')jumpQueued=true;});
 hold($('bSilk'),()=>castSilk());
-hold($('bPassive'),()=>toastMsg('Passive · Swift & Still: regen while airborne; weakened mid-air → emergency shuttles'));
+hold($('bPassive'),()=>toastMsg('Passive · Swift & Still: regen while airborne; knocked to low HP → random emergency shuttles'));
 hold($('bItem'),()=>toastMsg('Items aren’t part of this demo'));
 document.querySelectorAll('.sig').forEach(s=>hold(s,()=>toastMsg('Team signals aren’t part of this demo')));
 hold($('pauseBtn'),()=>{showMenu();});
@@ -428,26 +428,27 @@ function hitBax(){
   }else{
     B.hp-=1;
     if(B.hp<=0){caught();return;}
+    if(B.hp<=1.05){B.hp=1;startWeak();return;}   // knocked to low HP: Passive kicks in
     B.st='stun';B.t=.9;B.vx=-T.face*-1;B.knock=T.face*260;toastMsg('Hit! Bax is stunned','bad');
   }
 }
 function startWeak(){
-  B.st='weak';B.t=.45;B.hang=null;B.timer=0;
+  B.st='weak';B.t=.35;B.hang=null;B.timer=0;B.inv=0;
   $('bPassive').classList.remove('flash');void $('bPassive').offsetWidth;$('bPassive').classList.add('flash');
-  toastMsg('Weakened mid-air: Passive triggers emergency shuttles','bad');
-  B.hops=2;
+  toastMsg('Low HP! Passive: Bax shuttles wildly to escape','bad');
+  B.hops=3+(Math.random()<.5?1:0);
 }
 function emergencyHop(){
   let best=null;
   for(let i=0;i<14;i++){
-    const away=(B.x<T.x?-1:1);const a=i<8?(-Math.PI/2)+(away*(0.35+Math.random()*0.9)):Math.random()*Math.PI*2;const r=120+Math.random()*80;
+    const away=(B.x<T.x?-1:1);const a=i<8?(-Math.PI/2)+(away*(Math.random()*1.6-0.3)):Math.random()*Math.PI*2;const r=130+Math.random()*110;
     let x=clamp(B.x+Math.cos(a)*r,50,W-50),y=clamp(B.y+Math.sin(a)*r,60,FLOOR-BH-10);
     const s=firstHit(B.x,B.y,x,y);if(s){x=s.x;y=s.y;}
     if(Math.hypot(x-B.x,y-B.y)>60){best={x,y};break;}
   }
   if(!best)best={x:B.x,y:B.y};
   const x0=B.x,y0=B.y;B.st='eshuttle';B.rot=Math.atan2(best.y-y0,best.x-x0);B.face=best.x>=x0?1:-1;
-  tween(.24,p=>{B.x=lerp(x0,best.x,p);B.y=lerp(y0,best.y,p);},()=>{B.st='weak';B.t=.28;},easeOut);
+  tween(.2,p=>{B.x=lerp(x0,best.x,p);B.y=lerp(y0,best.y,p);},()=>{B.st='weak';B.t=.14;},easeOut);
 }
 function caught(){
   B.st='caught';T.st='carry';T.t=0;G0.mode='ending';
@@ -488,7 +489,7 @@ function updBax(dt){
       if(B.timer<=0)dropFromAir('timeout');
       break;}
     case 'weak':{B.t-=dt;if(B.t<=0){if(B.hops>0){B.hops--;emergencyHop();}else{B.st='air';B.vy=0;B.forced='weak';}}break;}
-    case 'land':{B.t-=dt;if(B.t<=0){B.st='ground';if(B.weakLand)B.inv=1;}break;}
+    case 'land':{B.t-=dt;if(B.t<=0){B.st='ground';if(B.weakLand)B.inv=1.8;}break;}
     case 'stun':{B.t-=dt;B.x=clamp(B.x+B.knock*dt,28,W-28);B.knock*=.85;if(B.t<=0){B.st='ground';B.inv=1.6;}
       if(!(B.x>=B.plat.x0&&B.x<=B.plat.x1)){B.st='air';B.vy=0;}break;}
   }
@@ -553,8 +554,8 @@ function updTom(dt){
     T.t-=dt;
     if(!T.hitDone){
       const xa=T.face>0?T.x-30:T.x-125,xb=T.face>0?T.x+125:T.x+30;const ya=T.y-190,yb=T.y+5;
-      if(T.tgt==='cocoon'){if(C.st==='struggle'&&C.x>xa&&C.x<xb){T.hitDone=true;C.st='broken';G0.mode='ending';toastMsg('The cat broke the cocoon!','bad');
-          later(()=>endGame(false,'The cat broke the cocoon','Edge case · Enemy breaks the cocoon','Any player can break the cocoon. Land it away from the cat, or let your teammate shoot the cat back while the trapped mouse struggles free.','cocoon_break'),1100);}}
+      if(T.tgt==='cocoon'){if(C.st==='struggle'&&C.x>xa&&C.x<xb){T.hitDone=true;C.st='taken';T.st='carry';T.t=0;G0.mode='ending';toastMsg('The cat grabbed your teammate from the cocoon!','bad');
+          later(()=>endGame(false,'The cat caught your teammate','Edge case · Cocoon lands next to the cat','The cocoon came down on the cat’s floor, so the cat broke it open and grabbed the teammate inside. Land the cocoon away from the cat, or let your ally shoot it back first.','tom_carry'),1400);return;}}
       if(!T.hitDone&&A.st!=='down'&&A.x>xa&&A.x<xb){T.hitDone=true;A.st='down';A.t=2.6;A.knock=T.face*240;toastMsg('Your teammate got hit!','bad');}
       if(!T.hitDone&&reachBax&&B.x+26>xa&&B.x-26<xb){T.hitDone=true;hitBax();}
     }
@@ -627,7 +628,7 @@ function hints(){
     if(T.st==='away'||T.st==='leave')hint('away','The cat is gone: push the cheese now!');
     else if(K.atHole)hint('push','Stay next to the cheese to push it in (a hit pauses you)');
     else if(airborne())hint('air','The cat can’t reach you up here, but watch the float timer');
-    else hint('run','Push the cheese left into the hole. The cat only hits mice on the floor, so Shuttle up when it gets close');
+    else hint('run','Push the cheese into the hole. At low HP the Passive flings you away');
   }
 }
 
